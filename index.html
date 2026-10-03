@@ -1,0 +1,2314 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LetItGo Log — Let it go, then let it fade.</title>
+
+  <!-- Google Fonts: Newsreader (Editorial Serif) & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['Newsreader', 'Georgia', 'serif'],
+            sans: ['Plus Jakarta Sans', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+          },
+          colors: {
+            warm: {
+              50: '#fdfbf9',
+              100: '#faf7f2',
+              150: '#f5eee3',
+              200: '#ebdcd0',
+              300: '#dfcbbd',
+              400: '#c5ada0',
+            },
+            terracotta: {
+              50: '#fdf4f0',
+              100: '#fae7e0',
+              200: '#f5cdbf',
+              300: '#ecab94',
+              500: '#cb5d38',
+              600: '#b84e2a',
+              700: '#9b3e1f',
+            },
+            charcoal: {
+              900: '#1b1715',
+              800: '#2b2420',
+              700: '#433a35',
+              500: '#766961',
+              400: '#9c8e85',
+              300: '#c3b7af',
+            }
+          },
+          boxShadow: {
+            'soft': '0 4px 20px -2px rgba(43, 36, 32, 0.05), 0 2px 6px -1px rgba(43, 36, 32, 0.03)',
+            'card': '0 10px 30px -4px rgba(43, 36, 32, 0.06), 0 4px 10px -2px rgba(43, 36, 32, 0.03)',
+            'floating': '0 20px 40px -6px rgba(203, 93, 56, 0.25), 0 8px 16px -4px rgba(203, 93, 56, 0.15)',
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    body {
+      background-color: #faf7f2;
+      color: #1b1715;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-image: 
+        radial-gradient(at 10% 12%, rgba(245, 205, 191, 0.38) 0px, transparent 45%),
+        radial-gradient(at 90% 18%, rgba(235, 220, 208, 0.5) 0px, transparent 50%),
+        radial-gradient(at 50% 85%, rgba(245, 205, 191, 0.25) 0px, transparent 55%);
+      background-attachment: fixed;
+      transition: background-color 0.8s ease, color 0.8s ease;
+    }
+
+    /* Midnight Sanctuary Theme */
+    body.midnight-mode {
+      background-color: #171311;
+      color: #ede5dd;
+      background-image: 
+        radial-gradient(at 15% 15%, rgba(203, 93, 56, 0.18) 0px, transparent 45%),
+        radial-gradient(at 85% 25%, rgba(67, 58, 53, 0.4) 0px, transparent 55%),
+        radial-gradient(at 50% 80%, rgba(203, 93, 56, 0.12) 0px, transparent 50%);
+    }
+    body.midnight-mode header {
+      background-color: rgba(23, 19, 17, 0.85);
+      border-color: #2b2420;
+    }
+    body.midnight-mode .bg-white {
+      background-color: #221c19 !important;
+      border-color: #352b26 !important;
+      color: #ede5dd !important;
+    }
+    body.midnight-mode .bg-\[\#faf7f2\], body.midnight-mode .bg-\[\#fbf9f6\], body.midnight-mode .bg-\[\#fcfaf7\], body.midnight-mode .bg-\[\#fdfaf6\] {
+      background-color: #1c1714 !important;
+      border-color: #352b26 !important;
+      color: #ede5dd !important;
+    }
+    body.midnight-mode .text-charcoal-900 { color: #fdfbf9 !important; }
+    body.midnight-mode .text-charcoal-800 { color: #eae1d8 !important; }
+    body.midnight-mode .text-charcoal-700 { color: #c3b7af !important; }
+    body.midnight-mode .text-charcoal-500 { color: #9c8e85 !important; }
+    body.midnight-mode .border-warm-200, body.midnight-mode .border-warm-150 { border-color: #352b26 !important; }
+
+    .serif-title {
+      font-family: 'Newsreader', Georgia, serif;
+    }
+
+    /* Ritual Animations */
+    @keyframes burnAshes {
+      0% { filter: blur(0px); opacity: 1; transform: scale(1); }
+      40% { filter: blur(2px) contrast(150%); color: #ea580c; background-color: #fff7ed; }
+      100% { filter: blur(12px); opacity: 0; transform: translateY(-30px) scale(0.96); }
+    }
+    .animate-burn {
+      animation: burnAshes 1.6s ease-in forwards;
+    }
+
+    @keyframes skyLantern {
+      0% { opacity: 1; transform: translateY(0) scale(1); }
+      50% { box-shadow: 0 0 40px 10px rgba(249, 115, 22, 0.4); border-color: #fb923c; }
+      100% { opacity: 0; transform: translateY(-80px) scale(0.7); }
+    }
+    .animate-lantern {
+      animation: skyLantern 1.8s ease-in-out forwards;
+    }
+
+    @keyframes oceanDissolve {
+      0% { opacity: 1; filter: blur(0px); transform: translateY(0); }
+      50% { filter: blur(3px); color: #0284c7; background-color: #f0f9ff; }
+      100% { opacity: 0; filter: blur(16px); transform: scale(1.04); }
+    }
+    .animate-ocean {
+      animation: oceanDissolve 1.6s ease-out forwards;
+    }
+
+    /* Toast Animation */
+    @keyframes toastSlide {
+      from { transform: translateY(-20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    .toast-animate {
+      animation: toastSlide 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col relative selection:bg-terracotta-100 selection:text-terracotta-700">
+
+  <!-- Floating Toast Notifications Container -->
+  <div id="toastContainer" class="fixed top-24 right-6 z-50 flex flex-col gap-2.5 max-w-sm w-full pointer-events-none"></div>
+
+  <!-- Top Navigation Header[cite: 1] -->
+  <header class="sticky top-0 z-40 bg-[#faf7f2]/85 backdrop-blur-md border-b border-warm-200 transition-colors">
+    <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
+      <!-- Brand Logo[cite: 1] -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-9 h-9 rounded-full bg-terracotta-500 flex items-center justify-center text-white shadow-sm group-hover:bg-terracotta-600 transition-colors">
+          <svg class="w-4 h-4 fill-current transform group-hover:-rotate-6 transition-transform" viewBox="0 0 24 24">
+            <path d="M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l1-2.3A4.49 4.49 0 0 0 8 20C19 20 22 3 22 3c-1 2-8 2.25-13 3.25S2 11.5 2 13.5s1.75 3.75 1.75 3.75C7 8 17 8 17 8z"/>
+          </svg>
+        </div>
+        <span class="text-xl font-bold tracking-tight text-charcoal-900 serif-title">LetItGo Log</span>
+      </a>
+
+      <!-- Navigation Links[cite: 1] -->
+      <div class="flex items-center gap-4 sm:gap-6 md:gap-7 text-sm font-medium text-charcoal-700">
+        <a href="#write-section" class="hover:text-terracotta-600 transition-colors hidden sm:inline">Write</a>
+        <a href="#feed-section" class="hover:text-terracotta-600 transition-colors hidden sm:inline">The room</a>
+        <a href="#glimmers-section" class="hover:text-terracotta-600 transition-colors hidden md:flex items-center gap-1.5 text-terracotta-600 font-semibold">
+          <span>Glimmers</span>
+          <span class="w-1.5 h-1.5 rounded-full bg-terracotta-500"></span>
+        </a>
+        <a href="#stories-section" class="hover:text-terracotta-600 transition-colors flex items-center gap-1 font-semibold text-charcoal-800">
+          <span>Echoes of Light</span>
+          <span class="text-[10px] text-terracotta-600 font-normal">✦</span>
+        </a>
+        
+        <!-- Midnight Sanctuary Toggle Button -->
+        <button id="midnightToggleBtn" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border border-warm-200 text-charcoal-700 hover:text-terracotta-600 text-xs font-semibold shadow-sm transition-all" title="Toggle Midnight Sanctuary mode">
+          <span id="midnightIcon">🌙</span>
+          <span class="hidden lg:inline" id="midnightLabel">Midnight Sanctuary</span>
+        </button>
+
+        <!-- 24h Ephemeral Inbox Trigger[cite: 1, 3] -->
+        <div class="relative">
+          <button id="inboxToggleBtn" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border border-warm-200 text-charcoal-700 hover:text-terracotta-600 text-xs font-semibold shadow-sm transition-all">
+            <span>💌</span>
+            <span class="hidden sm:inline">Warmth Inbox</span>
+            <span id="inboxUnreadBadge" class="hidden w-2 h-2 rounded-full bg-terracotta-500"></span>
+          </button>
+
+          <!-- Dropdown Drawer for Inbox -->
+          <div id="inboxDropdown" class="hidden absolute right-0 mt-3 w-80 sm:w-96 bg-white rounded-3xl p-5 border border-warm-200 shadow-card z-50 text-left space-y-3">
+            <div class="flex items-center justify-between pb-3 border-b border-warm-150">
+              <div class="flex items-center gap-2">
+                <span class="text-xs font-bold uppercase tracking-wider text-terracotta-600">Ephemeral Inbox</span>
+                <span class="text-[10px] text-charcoal-400 bg-warm-100 px-2 py-0.5 rounded-full">24h only</span>
+              </div>
+              <button id="clearInboxBtn" class="text-[11px] text-charcoal-400 hover:text-charcoal-700">Clear</button>
+            </div>
+            <div id="inboxItemsList" class="space-y-2.5 max-h-72 overflow-y-auto pr-1"></div>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/80 border border-warm-200 text-charcoal-800 text-xs font-semibold shadow-sm">
+          <svg class="w-3.5 h-3.5 text-terracotta-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="9" stroke-width="2"/>
+            <path d="M12 7v5l3 2" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <span class="hidden sm:inline">Fades in 24h</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero & Write Section[cite: 1] -->
+  <section id="write-section" class="pt-16 pb-20 px-6 max-w-4xl mx-auto w-full text-center">
+    <!-- Top Pill[cite: 1] -->
+    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/90 border border-warm-200 text-xs font-medium text-charcoal-700 mb-8 shadow-sm">
+      <span class="text-terracotta-500">✨</span>
+      <span>Anonymous · No profiles · No history</span>
+    </div>
+
+    <!-- Main Hero Headings[cite: 1] -->
+    <h1 id="heroHeadline" class="text-5xl md:text-6xl font-normal text-charcoal-900 serif-title tracking-tight mb-6 leading-tight">
+      Let it go,<br />
+      then let it fade.
+    </h1>
+
+    <p id="heroSubtext" class="max-w-xl mx-auto text-charcoal-500 text-base md:text-lg font-normal leading-relaxed mb-12">
+      Set down whatever you are carrying into a quiet room of strangers who understand. Write it once, read other people's, and leave a little warmth behind.
+    </p>
+
+    <!-- Venting Input Card[cite: 1] -->
+    <div id="ventCard" class="bg-white rounded-3xl p-6 md:p-8 border border-warm-200 shadow-card text-left max-w-2xl mx-auto backdrop-blur-sm relative transition-all">
+      <div class="flex items-center justify-between pb-4 border-b border-warm-150 mb-5">
+        <div class="flex items-center gap-2.5">
+          <div class="w-7 h-7 rounded-full bg-terracotta-50 text-terracotta-600 flex items-center justify-center text-sm font-semibold">
+            🪶
+          </div>
+          <span class="text-sm font-semibold text-charcoal-800">What is weighing on you today?</span>
+        </div>
+        <span class="text-xs text-charcoal-400">Anonymous · No name needed</span>
+      </div>
+
+      <!-- Textarea[cite: 1] -->
+      <textarea id="ventInput" rows="5" maxlength="800" placeholder="You can be honest here. Nobody knows it is you, and it will be gone tomorrow." class="w-full bg-[#fbf9f6] border border-warm-200 rounded-2xl p-4 text-sm text-charcoal-800 placeholder:text-charcoal-400 focus:outline-none focus:border-terracotta-500 focus:bg-white transition-all resize-none leading-relaxed"></textarea>
+
+      <!-- Mood Selection (14 Moods)[cite: 1, 5] -->
+      <div class="mt-5">
+        <label class="block text-[11px] font-bold uppercase tracking-wider text-charcoal-400 mb-2.5">HOW DOES IT FEEL RIGHT NOW?</label>
+        <div class="flex flex-wrap gap-2" id="moodButtonsGroup">
+          <button type="button" data-mood="Burnout" data-count="412" class="mood-pill px-3.5 py-1.5 rounded-full text-xs font-medium bg-[#fcfaf7] border border-warm-200 text-charcoal-700 hover:border-warm-300 transition-all">😫 Burnout</button>
+          <button type="button" data-mood="Anxiety" data-count="534" class="mood-pill px-3.5 py-1.5 rounded-full text-xs font-medium bg-[#fcfaf7] border border-warm-200 text-charcoal-700 hover:border-warm-300 transition-all">🌪️ Anxiety</button>
+          <button type="button" data-mood="Heartbroken" data-count="318" class="mood-pill px-3.5 py-1.5 rounded-full text-xs font-medium bg-[#fcfaf7] border border-warm-200 text-charcoal-700 hover:border-warm-300 transition-all">💔 Heartbroken</button>
+          <button type="button" data-mood="Lonely" data-count="489" class="mood-pill px-3.5 py-1.5 rounded-full text-xs font-medium bg-[#fcfaf7] border border-warm-200 text-charcoal-700 hover:border-warm-300 transition-all">🥀 Lonely</button>
+          <button type="button" data-mood="Heavy Heart" data-count="362" class="mood-pill px-3.5 py-1.5 rounded-full text-xs font-medium bg-[#fcfaf7] border border-warm-200 text-charcoal-700 hover:border-warm-300 transition-all">🌧️ Heavy Heart</button>
+          <button type="button" data-mood="Overwhelmed" data-count="451" class="mood-pill px-3.5 py-1.5 rounded-full text-xs font-medium bg-[#fcfaf7] border border-warm-200 text-charcoal-700 hover:border-warm-300 transition-all">🌊 Overwhelmed</button>
+          <button type="button" data-mood="Numb" data-count="276" class="mood-pill px-3.5 py-1.5 rounded-full text-xs font-medium bg-[#fcfaf7] border border-warm-200 text-charcoal-700 hover:border-warm-300 transition-all">🌫️ Numb</button>
+          <button type="button" data-mood="Invisible" data-count="295" class="mood-pill px-3.5 py-1.5 rounded-full text-xs font-medium bg-[#fcfaf7] border border-warm-200 text-charcoal-700 hover:border-warm-300 transition-all">🫥 Invisible</button>
+          <button type="button" data-mood="Not Enough" data-count="384" class="mood-pill px-3.5 py-1.5 rounded-full text-xs font-medium bg-[#fcfaf7] border border-warm-200 text-charcoal-700 hover:border-warm-300 transition-all">🪞 Not Enough</button>
+          <button type="button" data-mood="Lost" data-count="427" class="mood-pill px-3.5 py-1.5 rounded-full text-xs font-medium bg-[#fcfaf7] border border-warm-200 text-charcoal-700 hover:border-warm-300 transition-all">🧭 Lost</button>
+          <button type="button" data-mood="Regret" data-count="215" class="mood-pill px-3.5 py-1.5 rounded-full text-xs font-medium bg-[#fcfaf7] border border-warm-200 text-charcoal-700 hover:border-warm-300 transition-all">⏳ Regret</button>
+          <button type="button" data-mood="Grieving" data-count="188" class="mood-pill px-3.5 py-1.5 rounded-full text-xs font-medium bg-[#fcfaf7] border border-warm-200 text-charcoal-700 hover:border-warm-300 transition-all">🕯️ Grieving</button>
+          <button type="button" data-mood="Pressure" data-count="341" class="mood-pill px-3.5 py-1.5 rounded-full text-xs font-medium bg-[#fcfaf7] border border-warm-200 text-charcoal-700 hover:border-warm-300 transition-all">⚖️ Pressure</button>
+          <button type="button" data-mood="Drained" data-count="399" class="mood-pill px-3.5 py-1.5 rounded-full text-xs font-medium bg-[#fcfaf7] border border-warm-200 text-charcoal-700 hover:border-warm-300 transition-all">🔋 Drained</button>
+        </div>
+      </div>
+
+      <!-- Release Ritual Selector -->
+      <div class="mt-5 pt-3 border-t border-warm-150">
+        <label class="block text-[11px] font-bold uppercase tracking-wider text-charcoal-400 mb-2">CHOOSE YOUR RELEASE RITUAL</label>
+        <div class="grid grid-cols-3 gap-2" id="ritualSelector">
+          <button type="button" data-ritual="ashes" class="ritual-pill px-3 py-2 rounded-xl text-xs font-medium bg-terracotta-50 border border-terracotta-500 text-terracotta-700 text-center transition-all">
+            <span class="block text-sm mb-0.5">🔥</span>
+            <span>Burn to ashes</span>
+          </button>
+          <button type="button" data-ritual="lantern" class="ritual-pill px-3 py-2 rounded-xl text-xs font-medium bg-[#fcfaf7] border border-warm-200 text-charcoal-700 text-center transition-all hover:border-warm-300">
+            <span class="block text-sm mb-0.5">🏮</span>
+            <span>Sky lantern</span>
+          </button>
+          <button type="button" data-ritual="ocean" class="ritual-pill px-3 py-2 rounded-xl text-xs font-medium bg-[#fcfaf7] border border-warm-200 text-charcoal-700 text-center transition-all hover:border-warm-300">
+            <span class="block text-sm mb-0.5">🌊</span>
+            <span>Dissolve in ocean</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Feature 1: You're Not Alone Banner -->
+      <div id="empathyStatBanner" class="hidden mt-4 p-3.5 rounded-2xl bg-[#fdf5f2] border border-terracotta-200 text-xs text-charcoal-700 flex items-center gap-2.5">
+        <span class="text-terracotta-500 text-sm">🤍</span>
+        <span id="empathyStatText">Today, 412 other people feel the same way. You are not alone.</span>
+      </div>
+
+      <!-- Footer & Submit[cite: 1] -->
+      <div class="mt-6 pt-4 border-t border-warm-150 flex items-center justify-between">
+        <span id="charCount" class="text-xs text-charcoal-400">0 / 800 characters</span>
+        <button id="postNoteBtn" class="px-5 py-2.5 rounded-xl bg-terracotta-500 hover:bg-terracotta-600 text-white font-medium text-xs shadow-sm hover:shadow transition-all active:scale-95 flex items-center gap-2">
+          <span>Release into the room</span>
+          <span>→</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- The Room Feed Section with Sidebar[cite: 2] -->
+  <section id="feed-section" class="py-12 px-6 max-w-6xl mx-auto w-full">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      
+      <!-- Left Column: Notes Feed (8 cols)[cite: 2] -->
+      <div class="lg:col-span-8 space-y-6">
+        <div>
+          <h2 class="text-3xl font-normal text-charcoal-900 serif-title mb-1.5">The room today</h2>
+          <p class="text-xs text-charcoal-500">Anonymous notes left by kind strangers. Read gently, and send a little empathy with one tap.</p>
+        </div>
+
+        <!-- Filter Controls Container[cite: 2] -->
+        <div class="space-y-3">
+          <!-- Primary Sort Tabs[cite: 2] -->
+          <div class="flex items-center gap-2" id="filterTabs">
+            <button data-filter="recent" class="sort-btn px-4 py-1.5 rounded-full text-xs font-medium bg-charcoal-900 text-white transition-all shadow-sm">Recent</button>
+            <button data-filter="empathy" class="sort-btn px-4 py-1.5 rounded-full text-xs font-medium bg-white border border-warm-200 text-charcoal-600 hover:bg-warm-100 transition-all">Most empathy</button>
+            <button data-filter="fading" class="sort-btn px-4 py-1.5 rounded-full text-xs font-medium bg-white border border-warm-200 text-charcoal-600 hover:bg-warm-100 transition-all">Fading soon</button>
+          </div>
+
+          <!-- Feed Mood Filters[cite: 2, 5] -->
+          <div class="flex items-center gap-1.5 overflow-x-auto pb-1.5 pt-1 text-xs no-scrollbar" id="feedMoodFilters">
+            <button data-feed-mood="all" class="feed-mood-pill px-3 py-1 rounded-full shrink-0 font-medium bg-terracotta-500 text-white transition-all">All feelings</button>
+            <button data-feed-mood="Burnout" class="feed-mood-pill px-3 py-1 rounded-full shrink-0 font-medium bg-white border border-warm-200 text-charcoal-600 hover:bg-warm-100 transition-all">😫 Burnout</button>
+            <button data-feed-mood="Anxiety" class="feed-mood-pill px-3 py-1 rounded-full shrink-0 font-medium bg-white border border-warm-200 text-charcoal-600 hover:bg-warm-100 transition-all">🌪️ Anxiety</button>
+            <button data-feed-mood="Heartbroken" class="feed-mood-pill px-3 py-1 rounded-full shrink-0 font-medium bg-white border border-warm-200 text-charcoal-600 hover:bg-warm-100 transition-all">💔 Heartbroken</button>
+            <button data-feed-mood="Lonely" class="feed-mood-pill px-3 py-1 rounded-full shrink-0 font-medium bg-white border border-warm-200 text-charcoal-600 hover:bg-warm-100 transition-all">🥀 Lonely</button>
+            <button data-feed-mood="Heavy Heart" class="feed-mood-pill px-3 py-1 rounded-full shrink-0 font-medium bg-white border border-warm-200 text-charcoal-600 hover:bg-warm-100 transition-all">🌧️ Heavy Heart</button>
+            <button data-feed-mood="Overwhelmed" class="feed-mood-pill px-3 py-1 rounded-full shrink-0 font-medium bg-white border border-warm-200 text-charcoal-600 hover:bg-warm-100 transition-all">🌊 Overwhelmed</button>
+            <button data-feed-mood="Lost" class="feed-mood-pill px-3 py-1 rounded-full shrink-0 font-medium bg-white border border-warm-200 text-charcoal-600 hover:bg-warm-100 transition-all">🧭 Lost</button>
+          </div>
+        </div>
+
+        <!-- Feed Container[cite: 2] -->
+        <div id="notesContainer" class="space-y-4"></div>
+      </div>
+
+      <!-- Right Column: Sidebar Widgets (4 cols)[cite: 2] -->
+      <div class="lg:col-span-4 space-y-6">
+        
+        <!-- Stats Card[cite: 2] -->
+        <div class="bg-white rounded-3xl p-6 border border-warm-200 shadow-soft">
+          <div class="grid grid-cols-2 gap-4 pb-5 border-b border-warm-150 text-center">
+            <div>
+              <div id="statNotesCount" class="text-4xl font-normal serif-title text-charcoal-900">6</div>
+              <div class="text-[11px] text-charcoal-400 mt-1 font-medium">notes in the room</div>
+            </div>
+            <div>
+              <div id="statEmpathyCount" class="text-4xl font-normal serif-title text-charcoal-900">388</div>
+              <div class="text-[11px] text-charcoal-400 mt-1 font-medium">empathy sent today</div>
+            </div>
+          </div>
+          <div class="mt-4 px-3.5 py-2.5 bg-emerald-50/80 border border-emerald-200/60 rounded-xl text-emerald-800 text-xs flex items-center gap-2 font-medium">
+            <span>💌</span>
+            <span id="statWordsShared">18 kind words shared so far</span>
+          </div>
+        </div>
+
+        <!-- Need a moment? Card[cite: 2] -->
+        <div class="bg-terracotta-50/70 rounded-3xl p-6 border border-terracotta-200/80 shadow-soft">
+          <div class="w-8 h-8 rounded-full bg-terracotta-100 text-terracotta-600 flex items-center justify-center text-sm mb-3">
+            ✨
+          </div>
+          <h3 class="text-base font-semibold text-charcoal-900 mb-1.5">Need a moment?</h3>
+          <p class="text-xs text-charcoal-500 leading-relaxed mb-5">
+            After venting, take a one minute reset. A breathing circle and your choice of 4 soothing soundscapes to settle your heart.
+          </p>
+          <button id="openCalmFromSidebar" class="w-full py-2.5 rounded-xl bg-terracotta-500 hover:bg-terracotta-600 text-white font-medium text-xs shadow-sm hover:shadow transition-all flex items-center justify-center gap-2">
+            <span>🧘</span>
+            <span>Open calm down corner</span>
+          </button>
+        </div>
+
+        <!-- How it works Quick Overview[cite: 2] -->
+        <div class="bg-white rounded-3xl p-6 border border-warm-200 shadow-soft space-y-4">
+          <h3 class="text-base font-bold serif-title text-charcoal-900">How it works</h3>
+          
+          <div class="flex gap-3">
+            <div class="w-7 h-7 rounded-full bg-warm-100 text-charcoal-600 flex items-center justify-center text-xs shrink-0">🪶</div>
+            <div>
+              <h4 class="text-xs font-semibold text-charcoal-800">Write it down</h4>
+              <p class="text-[11px] text-charcoal-500 mt-0.5">Type whatever is heavy. No name, no account, no history.</p>
+            </div>
+          </div>
+
+          <div class="flex gap-3">
+            <div class="w-7 h-7 rounded-full bg-warm-100 text-charcoal-600 flex items-center justify-center text-xs shrink-0">🤍</div>
+            <div>
+              <h4 class="text-xs font-semibold text-charcoal-800">Receive warmth</h4>
+              <p class="text-[11px] text-charcoal-500 mt-0.5">Strangers read it and send a hug, a candle, or a kind word.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================== -->
+  <!-- GLIMMERS OF WARMTH (Positive Photo Moments)             -->
+  <!-- ======================================================== -->
+  <section id="glimmers-section" class="py-16 px-6 max-w-6xl mx-auto w-full border-t border-warm-200">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
+      <div class="max-w-2xl">
+        <span class="text-xs font-bold tracking-wider uppercase text-terracotta-600">✦ GLIMMERS OF WARMTH</span>
+        <h2 class="text-3xl md:text-4xl font-normal serif-title text-charcoal-900 mt-2 mb-2">
+          Everyday proof that goodness still lives
+        </h2>
+        <p class="text-xs md:text-sm text-charcoal-500 leading-relaxed">
+          Glimmers are tiny sparks that remind your nervous system the world is gentle. A stranger helping an elder, a baby's soft laughter, golden light across a windowsill. Upload an anonymous photo of something that touched your soul today.
+        </p>
+      </div>
+
+      <button id="openGlimmerUploadBtn" class="shrink-0 px-5 py-3 rounded-full bg-terracotta-500 hover:bg-terracotta-600 text-white font-medium text-xs shadow-sm hover:shadow transition-all flex items-center gap-2 self-start md:self-auto">
+        <span>📸</span>
+        <span>Share a glimmer</span>
+      </button>
+    </div>
+
+    <!-- Glimmers Gallery Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="glimmersContainer"></div>
+  </section>
+
+  <!-- ======================================================== -->
+  <!-- ECHOES OF LIGHT (Stories of Resilience from the Greats) -->
+  <!-- ======================================================== -->
+  <section id="stories-section" class="py-16 px-6 max-w-6xl mx-auto w-full border-t border-warm-200 bg-[#fdfbf9]/60 rounded-3xl my-6">
+    <div class="max-w-2xl mb-10">
+      <span class="text-xs font-bold tracking-wider uppercase text-terracotta-600">✦ ECHOES OF LIGHT</span>
+      <h2 class="text-3xl md:text-4xl font-normal serif-title text-charcoal-900 mt-2 mb-3">
+        Souls who survived the dark
+      </h2>
+      <p class="text-xs md:text-sm text-charcoal-500 leading-relaxed">
+        Whenever you feel that your struggles are impossible to carry, remember those who walked through deep winter before you, yet found ways to create warmth for the world.
+      </p>
+    </div>
+
+    <!-- Stories Grid Container -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="storiesGrid"></div>
+  </section>
+
+  <!-- How It Works Section: 3 Gentle Steps[cite: 3] -->
+  <section id="how-it-works-section" class="py-20 px-6 max-w-5xl mx-auto w-full border-t border-warm-200">
+    <div class="text-center mb-12">
+      <span class="text-xs font-bold tracking-wider uppercase text-terracotta-600">✦ HOW IT WORKS</span>
+      <h2 class="text-3xl md:text-4xl font-normal serif-title text-charcoal-900 mt-3 mb-4">
+        Three gentle steps, then it is gone
+      </h2>
+      <p class="max-w-xl mx-auto text-xs md:text-sm text-charcoal-500 leading-relaxed">
+        LetItGo Log is built to carry nothing. You say the thing, someone somewhere answers with warmth, and the whole moment quietly dissolves.
+      </p>
+    </div>
+
+    <!-- 3 Steps Grid[cite: 3] -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="bg-white rounded-3xl p-7 border border-warm-200 shadow-soft">
+        <div class="flex items-center justify-between mb-6">
+          <div class="w-10 h-10 rounded-full bg-terracotta-50 text-terracotta-500 flex items-center justify-center text-sm font-semibold">
+            🪶
+          </div>
+          <span class="text-2xl font-normal serif-title text-warm-300">01</span>
+        </div>
+        <h3 class="text-base font-semibold text-charcoal-900 mb-2">Drop it in</h3>
+        <p class="text-xs text-charcoal-500 leading-relaxed">
+          Write your stress, your worry, or just the shape of a bad day. Pick a mood if you like. There is no name field, because there is no you here — only the feeling.
+        </p>
+      </div>
+
+      <div class="bg-white rounded-3xl p-7 border border-warm-200 shadow-soft">
+        <div class="flex items-center justify-between mb-6">
+          <div class="w-10 h-10 rounded-full bg-terracotta-50 text-terracotta-500 flex items-center justify-center text-sm font-semibold">
+            🤍
+          </div>
+          <span class="text-2xl font-normal serif-title text-warm-300">02</span>
+        </div>
+        <h3 class="text-base font-semibold text-charcoal-900 mb-2">Be held by strangers</h3>
+        <p class="text-xs text-charcoal-500 leading-relaxed">
+          Others read your note and send warmth or leave a gentle reply. You may pass a hundred people and never know, but the kindness is real and it is for you.
+        </p>
+      </div>
+
+      <div class="bg-white rounded-3xl p-7 border border-warm-200 shadow-soft">
+        <div class="flex items-center justify-between mb-6">
+          <div class="w-10 h-10 rounded-full bg-terracotta-50 text-terracotta-500 flex items-center justify-center text-sm font-semibold">
+            ⏱
+          </div>
+          <span class="text-2xl font-normal serif-title text-warm-300">03</span>
+        </div>
+        <h3 class="text-base font-semibold text-charcoal-900 mb-2">Watch it disappear</h3>
+        <p class="text-xs text-charcoal-500 leading-relaxed">
+          After 24 hours, every note and every comment fades away completely. Nothing is archived. Nothing follows you home. You are free to start again tomorrow.
+        </p>
+      </div>
+    </div>
+
+    <!-- Call to action card[cite: 4] -->
+    <div class="mt-10 bg-terracotta-50/70 border border-terracotta-200/80 rounded-3xl p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-soft">
+      <div class="flex items-center gap-4">
+        <div class="w-12 h-12 rounded-full bg-terracotta-500 text-white flex items-center justify-center text-lg shrink-0 shadow-sm">
+          🤍
+        </div>
+        <div>
+          <h3 class="text-base font-semibold text-charcoal-900">Nobody has to fight their battles alone</h3>
+          <p class="text-xs text-charcoal-500 mt-1">Sometimes the smallest kindness from a stranger is the thing that gets you through the night. Leave one for someone today.</p>
+        </div>
+      </div>
+      <a href="#write-section" class="px-6 py-3 rounded-xl bg-terracotta-500 hover:bg-terracotta-600 text-white font-medium text-xs shrink-0 shadow-sm hover:shadow transition-all flex items-center gap-2">
+        <span>Write a note</span>
+        <span>→</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer[cite: 4] -->
+  <footer class="bg-[#f5eee3] border-t border-warm-200 pt-16 pb-12 px-6 mt-auto">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-warm-200/80">
+      
+      <!-- Col 1[cite: 4] -->
+      <div class="md:col-span-5 space-y-4">
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-full bg-terracotta-500 flex items-center justify-center text-white">
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+              <path d="M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l1-2.3A4.49 4.49 0 0 0 8 20C19 20 22 3 22 3c-1 2-8 2.25-13 3.25S2 11.5 2 13.5s1.75 3.75 1.75 3.75C7 8 17 8 17 8z"/>
+            </svg>
+          </div>
+          <span class="text-lg font-bold serif-title text-charcoal-900">LetItGo Log</span>
+        </div>
+        <p class="text-xs text-charcoal-500 leading-relaxed max-w-sm">
+          A quiet, anonymous room for shared healing. Set down what is heavy, then let it fade. Nothing here is saved, and nobody is judging.
+        </p>
+      </div>
+
+      <!-- Col 2[cite: 4] -->
+      <div class="md:col-span-3 space-y-3">
+        <h4 class="text-xs font-bold uppercase tracking-wider text-charcoal-400">THE ROOM</h4>
+        <ul class="space-y-2 text-xs text-charcoal-700 font-medium">
+          <li><a href="#write-section" class="hover:text-terracotta-600 transition">Write a note</a></li>
+          <li><a href="#feed-section" class="hover:text-terracotta-600 transition">Read the feed</a></li>
+          <li><a href="#glimmers-section" class="hover:text-terracotta-600 transition">Glimmers of light</a></li>
+          <li><a href="#stories-section" class="hover:text-terracotta-600 transition">Echoes of Light</a></li>
+          <li><a href="#how-it-works-section" class="hover:text-terracotta-600 transition">How it works</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 3[cite: 4] -->
+      <div class="md:col-span-4 space-y-3">
+        <h4 class="text-xs font-bold uppercase tracking-wider text-charcoal-400">A GENTLE REMINDER</h4>
+        <p class="text-xs text-charcoal-500 leading-relaxed">
+          This is a space for comfort, not crisis care. If you are in danger or need immediate help, please reach out to a local emergency line or a trusted person near you.
+        </p>
+        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-[11px] font-semibold">
+          <span>💚</span>
+          <span>You are not alone</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Bar[cite: 4] -->
+    <div class="max-w-6xl mx-auto pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-charcoal-400 gap-3">
+      <div>Made with care. Every note, photo, and comment fades after 24 hours.</div>
+      <div class="flex items-center gap-6">
+        <a href="#" class="hover:text-charcoal-700 transition">Privacy</a>
+        <a href="#" class="hover:text-charcoal-700 transition">Guidelines</a>
+        <span>© 2026 LetItGo Log</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Sticky Action Button[cite: 1, 2] -->
+  <button id="floatingCalmBtn" class="fixed bottom-6 right-6 z-40 px-5 py-3 rounded-full bg-terracotta-500 hover:bg-terracotta-600 text-white font-medium text-xs shadow-floating hover:shadow-xl transition-all flex items-center gap-2 active:scale-95 group">
+    <span class="group-hover:rotate-12 transition-transform">✨</span>
+    <span>Calm down corner</span>
+  </button>
+
+  <!-- MODAL: Upload a Glimmer of Warmth -->
+  <div id="glimmerModal" class="fixed inset-0 bg-charcoal-900/60 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white border border-warm-200 rounded-[30px] p-6 md:p-8 max-w-lg w-full shadow-2xl relative space-y-4 max-h-[90vh] overflow-y-auto">
+      <button id="closeGlimmerModalBtn" class="absolute top-5 right-5 text-charcoal-400 hover:text-charcoal-700 text-lg transition">✕</button>
+
+      <div>
+        <span class="text-[10px] font-bold uppercase tracking-wider text-terracotta-600">LEAVE A SPARK</span>
+        <h3 class="text-2xl font-normal serif-title text-charcoal-900 mt-1">Share a quiet glimmer</h3>
+        <p class="text-xs text-charcoal-500 mt-1">Upload a photo that touched your heart today. It will quietly fade after 24 hours.</p>
+      </div>
+
+      <!-- File Picker & Preview -->
+      <div class="space-y-2">
+        <label class="block text-xs font-bold text-charcoal-700">Photo</label>
+        <div id="glimmerDropZone" class="border-2 border-dashed border-warm-300 hover:border-terracotta-400 rounded-2xl p-6 text-center cursor-pointer transition-all bg-[#faf7f2]">
+          <input type="file" id="glimmerFileInput" accept="image/*" class="hidden" />
+          <div id="glimmerUploadPrompt" class="space-y-1">
+            <span class="text-2xl block">📸</span>
+            <span class="text-xs font-semibold text-charcoal-700 block">Click to upload or drag image here</span>
+            <span class="text-[10px] text-charcoal-400 block">PNG, JPG, WebP up to 5MB</span>
+          </div>
+          <div id="glimmerPreviewContainer" class="hidden relative">
+            <img id="glimmerPreviewImg" src="" alt="Preview" class="max-h-56 mx-auto rounded-xl object-cover shadow-sm" />
+            <button type="button" id="removeGlimmerImgBtn" class="absolute top-2 right-2 px-2 py-1 bg-charcoal-900/80 text-white rounded-lg text-[10px] hover:bg-charcoal-900">Change</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Caption -->
+      <div class="space-y-1.5">
+        <label class="block text-xs font-bold text-charcoal-700">What makes this moment special?</label>
+        <textarea id="glimmerCaptionInput" rows="3" maxlength="300" placeholder="An elderly lady feeding sparrows in the morning sun, a newborn's tiny fingers, or rain washing over green leaves..." class="w-full bg-[#fbf9f6] border border-warm-200 rounded-xl p-3 text-xs text-charcoal-800 placeholder:text-charcoal-400 focus:outline-none focus:border-terracotta-500 transition resize-none"></textarea>
+      </div>
+
+      <!-- Category Tag -->
+      <div class="space-y-1.5">
+        <label class="block text-[11px] font-bold uppercase tracking-wider text-charcoal-400">CATEGORY</label>
+        <div class="flex flex-wrap gap-2" id="glimmerTagSelector">
+          <button type="button" data-tag="Human Kindness" class="glimmer-tag-btn px-3 py-1 rounded-full text-xs font-medium bg-terracotta-50 border border-terracotta-500 text-terracotta-700 transition">🤝 Human Kindness</button>
+          <button type="button" data-tag="Gentle Nature" class="glimmer-tag-btn px-3 py-1 rounded-full text-xs font-medium bg-[#fcfaf7] border border-warm-200 text-charcoal-700 hover:border-warm-300 transition">🌿 Gentle Nature</button>
+          <button type="button" data-tag="Family & Joy" class="glimmer-tag-btn px-3 py-1 rounded-full text-xs font-medium bg-[#fcfaf7] border border-warm-200 text-charcoal-700 hover:border-warm-300 transition">👶 Family & Joy</button>
+          <button type="button" data-tag="Quiet Wonder" class="glimmer-tag-btn px-3 py-1 rounded-full text-xs font-medium bg-[#fcfaf7] border border-warm-200 text-charcoal-700 hover:border-warm-300 transition">✨ Quiet Wonder</button>
+        </div>
+      </div>
+
+      <!-- Submit -->
+      <div class="pt-3 border-t border-warm-150 flex items-center justify-between">
+        <span class="text-[11px] text-charcoal-400">Anonymous · Fades in 24h</span>
+        <button id="submitGlimmerBtn" class="px-5 py-2.5 rounded-xl bg-terracotta-500 hover:bg-terracotta-600 text-white font-medium text-xs shadow-sm transition active:scale-95 flex items-center gap-2">
+          <span>Release glimmer</span>
+          <span>✨</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Feature 1 Modal: Pay It Forward (Pass on Warmth) -->
+  <div id="payItForwardModal" class="fixed inset-0 bg-charcoal-900/60 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white border border-warm-200 rounded-[30px] p-7 md:p-8 max-w-lg w-full shadow-2xl space-y-5 text-left animate-fadeIn">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-full bg-terracotta-50 text-terracotta-600 flex items-center justify-center text-lg">
+          🌱
+        </div>
+        <div>
+          <span class="text-[10px] font-bold uppercase tracking-wider text-terracotta-600">PAY IT FORWARD</span>
+          <h3 class="text-lg font-bold serif-title text-charcoal-900">Your burden is set down.</h3>
+        </div>
+      </div>
+
+      <p class="text-xs text-charcoal-500 leading-relaxed">
+        Before you step forward into your day, would you like to pass a spark of gentle light to a stranger who is also feeling heavy tonight?
+      </p>
+
+      <div class="p-4 rounded-2xl bg-[#faf7f2] border border-warm-200 space-y-2.5">
+        <div class="flex items-center justify-between text-[11px]">
+          <span class="font-bold text-charcoal-800" id="payTargetAuthor">Drifting Cloud</span>
+          <span class="text-terracotta-600 bg-terracotta-50 px-2 py-0.5 rounded-full font-semibold" id="payTargetMood">Anxiety</span>
+        </div>
+        <p class="text-xs text-charcoal-700 leading-relaxed italic" id="payTargetContent">"I said the wrong thing at work..."</p>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-2.5 pt-1">
+        <button id="paySendHugBtn" class="flex-1 py-2.5 rounded-xl bg-terracotta-500 hover:bg-terracotta-600 text-white text-xs font-semibold transition flex items-center justify-center gap-1.5 shadow-sm">
+          <span>🫂 Send a warm hug</span>
+        </button>
+        <button id="paySkipBtn" class="py-2.5 px-4 rounded-xl bg-warm-150 hover:bg-warm-200 text-charcoal-700 text-xs font-medium transition text-center">
+          I'm ready to rest now
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Feature: Ephemeral Keepsake Postcard Modal -->
+  <div id="keepsakeModal" class="fixed inset-0 bg-charcoal-900/60 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white border border-warm-200 rounded-[30px] p-6 md:p-8 max-w-md w-full shadow-2xl relative text-center space-y-5">
+      <button id="closeKeepsakeBtn" class="absolute top-5 right-5 text-charcoal-400 hover:text-charcoal-700 text-lg transition">✕</button>
+
+      <div>
+        <span class="text-[10px] font-bold uppercase tracking-wider text-terracotta-600">A WHISPER OF WARMTH</span>
+        <h3 class="text-2xl font-normal serif-title text-charcoal-900 mt-1">Keep this kindness</h3>
+        <p class="text-xs text-charcoal-500 mt-1">The note will dissolve tomorrow, but this gentle reminder can stay with you.</p>
+      </div>
+
+      <div id="postcardCard" class="bg-[#fdfaf6] border-2 border-dashed border-warm-300 rounded-3xl p-6 text-left space-y-4 shadow-sm relative overflow-hidden">
+        <div class="flex items-center justify-between border-b border-warm-200 pb-3">
+          <span class="text-xs font-bold serif-title text-charcoal-800">LetItGo Log Keepsake</span>
+          <span class="text-[10px] text-terracotta-600 font-semibold uppercase tracking-wider">🌿 Faded in 24h</span>
+        </div>
+        <p id="keepsakeQuote" class="text-sm serif-title italic text-charcoal-900 leading-relaxed">
+          "You are allowed to fall apart. You don't have to carry the whole world on your shoulders tonight."
+        </p>
+        <div class="pt-2 flex items-center justify-between text-[11px] text-charcoal-400 font-medium">
+          <span id="keepsakeAuthor">— Anonymous kindness</span>
+          <span id="keepsakeDate">Autumn 2026</span>
+        </div>
+      </div>
+
+      <button id="downloadPostcardBtn" class="w-full py-2.5 rounded-xl bg-charcoal-900 hover:bg-charcoal-800 text-white text-xs font-semibold transition flex items-center justify-center gap-2 shadow-sm">
+        <span>🖼️ Download Keepsake Image</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Story Reading Modal -->
+  <div id="storyModal" class="fixed inset-0 bg-charcoal-900/50 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white border border-warm-200 rounded-[30px] p-6 md:p-10 max-w-xl w-full shadow-2xl relative max-h-[90vh] overflow-y-auto">
+      <button id="closeStoryModalBtn" class="absolute top-6 right-6 text-charcoal-400 hover:text-charcoal-700 text-lg transition">✕</button>
+
+      <span id="modalStoryTag" class="text-[11px] font-bold uppercase tracking-wider text-terracotta-600"></span>
+      <h3 id="modalStoryTitle" class="text-2xl md:text-3xl font-normal serif-title text-charcoal-900 mt-2 mb-1"></h3>
+      <p id="modalStoryFigure" class="text-xs text-charcoal-400 font-medium mb-6"></p>
+
+      <blockquote id="modalStoryQuote" class="p-4 rounded-2xl bg-[#faf7f2] border-l-4 border-terracotta-500 text-sm italic serif-title text-charcoal-800 leading-relaxed mb-6"></blockquote>
+      <div id="modalStoryBody" class="space-y-4 text-xs md:text-sm text-charcoal-700 leading-relaxed font-normal"></div>
+
+      <div class="mt-8 pt-6 border-t border-warm-150 flex items-center gap-3 bg-terracotta-50/60 p-4 rounded-2xl border border-terracotta-200/60">
+        <span class="text-xl">🕯️</span>
+        <div class="text-xs text-charcoal-700">
+          <span class="font-bold text-terracotta-700 block mb-0.5">Gentle takeaway:</span>
+          <span id="modalStoryTakeaway"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Crisis Support Modal -->
+  <div id="crisisModal" class="fixed inset-0 bg-charcoal-900/60 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white border border-rose-200 rounded-[30px] p-7 md:p-9 max-w-lg w-full shadow-2xl text-left space-y-5">
+      <div class="w-12 h-12 rounded-full bg-rose-50 text-rose-600 flex items-center justify-center text-2xl mx-auto shadow-sm">
+        🕊️
+      </div>
+      <div class="text-center space-y-2">
+        <span class="text-[11px] font-bold uppercase tracking-wider text-rose-600">You Are Precious</span>
+        <h3 class="text-2xl font-normal serif-title text-charcoal-900">Tonight might feel heavy, but you are not alone</h3>
+        <p class="text-xs text-charcoal-500 leading-relaxed">
+          We hear how deeply painful things are right now. This website is meant for letting go of daily stress, but your life is completely irreplaceable. Please connect with someone who can listen and support you right this moment.
+        </p>
+      </div>
+
+      <div class="space-y-2.5 bg-[#fcfaf7] border border-warm-200 rounded-2xl p-4 text-xs">
+        <div class="flex items-center justify-between pb-2.5 border-b border-warm-150">
+          <div>
+            <div class="font-bold text-charcoal-900">Vietnam — Đường dây nóng Ngày Mai</div>
+            <div class="text-[11px] text-charcoal-500">Hỗ trợ tâm lý & khủng hoảng trầm cảm (Miễn phí)</div>
+          </div>
+          <a href="tel:0963061414" class="px-3 py-1.5 rounded-xl bg-emerald-600 text-white font-semibold text-xs hover:bg-emerald-700 transition">096 306 1414</a>
+        </div>
+        <div class="flex items-center justify-between pt-1">
+          <div>
+            <div class="font-bold text-charcoal-900">International / US & Canada</div>
+            <div class="text-[11px] text-charcoal-500">Suicide & Crisis Lifeline (24/7)</div>
+          </div>
+          <a href="tel:988" class="px-3 py-1.5 rounded-xl bg-charcoal-900 text-white font-semibold text-xs hover:bg-charcoal-800 transition">Call / Text 988</a>
+        </div>
+      </div>
+
+      <button id="closeCrisisBtn" class="w-full py-2.5 rounded-xl bg-warm-200 hover:bg-warm-300 text-charcoal-800 text-xs font-semibold transition">
+        I will breathe and stay safe
+      </button>
+    </div>
+  </div>
+
+  <!-- Gentle AI Guard Notification -->
+  <div id="aiGuardModal" class="fixed inset-0 bg-charcoal-900/40 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white border border-warm-200 rounded-3xl p-7 max-w-sm w-full shadow-2xl text-center space-y-4">
+      <div class="w-12 h-12 rounded-full bg-terracotta-50 text-terracotta-500 flex items-center justify-center text-xl mx-auto">
+        🌿
+      </div>
+      <div>
+        <h3 class="text-lg font-bold serif-title text-charcoal-900">Wait a gentle moment...</h3>
+        <p class="text-xs text-charcoal-500 mt-2 leading-relaxed">
+          This room is built to shelter vulnerable hearts. We noticed words that might carry unintended pain. Would you consider reframing your thought with kindness?
+        </p>
+      </div>
+      <button id="closeAiGuardBtn" class="w-full py-2.5 rounded-xl bg-charcoal-900 hover:bg-charcoal-800 text-white text-xs font-semibold transition">
+        I will rephrase
+      </button>
+    </div>
+  </div>
+
+  <!-- Calm Down Corner Modal with 4 Soundscapes -->
+  <div id="calmModal" class="fixed inset-0 bg-[#faf7f2]/95 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white border border-warm-200 rounded-3xl p-8 max-w-md w-full shadow-2xl relative text-center flex flex-col items-center">
+      <button id="closeCalmBtn" class="absolute top-5 right-5 text-charcoal-400 hover:text-charcoal-700 text-lg transition">✕</button>
+
+      <span class="text-[11px] font-bold tracking-wider uppercase text-terracotta-600 mb-1">A QUIET MOMENT</span>
+      <h3 class="text-2xl font-normal serif-title text-charcoal-900 mb-2">Breathe & Reset</h3>
+      <p class="text-xs text-charcoal-500 max-w-xs mb-6">Follow the circle: Inhale deeply for 4s, gently hold for 4s, then release for 4s.</p>
+
+      <div class="relative w-44 h-44 flex items-center justify-center mb-6">
+        <div id="breathCircle" class="w-28 h-28 rounded-full bg-terracotta-50/80 border-2 border-terracotta-500/40 flex items-center justify-center transition-all duration-1000 shadow-inner">
+          <span id="breathText" class="text-xs font-semibold text-terracotta-700">Inhale...</span>
+        </div>
+      </div>
+
+      <div class="w-full p-3.5 rounded-2xl bg-[#faf7f2] border border-warm-200 mb-6 space-y-2.5 text-left">
+        <div class="flex items-center justify-between">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-charcoal-500">SOUNDSCAPES OF SOLACE</span>
+          <button id="toggleAudioBtn" class="px-3 py-1 rounded-lg text-xs font-medium bg-terracotta-100 text-terracotta-700 hover:bg-terracotta-200 transition">Play sound</button>
+        </div>
+        <div class="grid grid-cols-2 gap-2 text-xs" id="soundscapeOptions">
+          <button data-sound="rain" class="soundscape-btn px-2.5 py-1.5 rounded-xl bg-white border border-terracotta-500 text-terracotta-700 font-medium text-left flex items-center gap-1.5 transition">
+            <span>🌧️</span> <span>Soft Rain</span>
+          </button>
+          <button data-sound="fire" class="soundscape-btn px-2.5 py-1.5 rounded-xl bg-[#faf7f2] border border-warm-200 text-charcoal-600 font-medium text-left flex items-center gap-1.5 transition">
+            <span>🪵</span> <span>Campfire</span>
+          </button>
+          <button data-sound="tide" class="soundscape-btn px-2.5 py-1.5 rounded-xl bg-[#faf7f2] border border-warm-200 text-charcoal-600 font-medium text-left flex items-center gap-1.5 transition">
+            <span>🌊</span> <span>Ocean Tide</span>
+          </button>
+          <button data-sound="wind" class="soundscape-btn px-2.5 py-1.5 rounded-xl bg-[#faf7f2] border border-warm-200 text-charcoal-600 font-medium text-left flex items-center gap-1.5 transition">
+            <span>🍃</span> <span>Whisper Wind</span>
+          </button>
+        </div>
+      </div>
+
+      <button id="finishCalmBtn" class="w-full py-2.5 rounded-xl bg-charcoal-900 hover:bg-charcoal-800 text-white text-xs font-semibold transition">
+        I feel lighter now
+      </button>
+    </div>
+  </div>
+
+  <!-- JavaScript Logic -->
+  <script>
+    // Storage keys (Preserved for Presentation Mode)
+    const STORAGE_KEY = 'letitgo_notes_presentation_mode';
+    const GLIMMERS_KEY = 'letitgo_glimmers_presentation_mode';
+    const MY_NOTES_KEY = 'letitgo_my_note_ids';
+    const INBOX_KEY = 'letitgo_inbox_presentation_mode';
+    const REPORTS_KEY = 'letitgo_my_reports';
+    const ONE_DAY_MS = 24 * 60 * 60 * 1000;
+
+    const TOXIC_WORDS = ['hate', 'stupid', 'idiot', 'die', 'kill', 'ugly', 'trash', 'ngu', 'cút', 'chửi', 'rác'];
+    const CRISIS_WORDS = ['suicide', 'kill myself', 'end my life', 'want to die', 'self harm', 'cut myself', 'tự tử', 'muốn chết', 'kết thúc cuộc đời', 'chết đi cho xong'];
+
+    const natureNames = [
+      'Quiet Meadow', 'Drifting Cloud', 'Soft Lantern', 'Whispering Pine',
+      'Warm Ember', 'Still River', 'Morning Dew', 'Silent Willow', 'Autumn Leaf', 'Gentle Breeze', 'Distant Star'
+    ];
+
+    let currentSelectedMood = null;
+    let selectedRitual = 'ashes';
+    let currentSortFilter = 'recent';
+    let currentFeedMoodFilter = 'all';
+    let selectedGlimmerTag = 'Human Kindness';
+    let glimmerImageBase64 = null;
+    const unblurredNoteIds = new Set();
+
+    // Soundscape & Micro FX State
+    let audioContext = null;
+    let currentNoiseNode = null;
+    let currentGainNode = null;
+    let isPlayingAudio = false;
+    let activeSoundscape = 'rain';
+
+    function getAudioCtx() {
+      if (!audioContext) {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        audioContext = new AudioCtx();
+      }
+      if (audioContext.state === 'suspended') {
+        audioContext.resume();
+      }
+      return audioContext;
+    }
+
+    function playMatchSound() {
+      try {
+        const ctx = getAudioCtx();
+        const now = ctx.currentTime;
+        const bufferSize = Math.floor(ctx.sampleRate * 0.16);
+        const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+        const data = buffer.getChannelData(0);
+
+        for (let i = 0; i < bufferSize; i++) {
+          data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (ctx.sampleRate * 0.04));
+        }
+
+        const noise = ctx.createBufferSource();
+        noise.buffer = buffer;
+
+        const filter = ctx.createBiquadFilter();
+        filter.type = 'bandpass';
+        filter.frequency.setValueAtTime(2600, now);
+        filter.Q.setValueAtTime(2.5, now);
+
+        const gain = ctx.createGain();
+        gain.gain.setValueAtTime(0.18, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.16);
+
+        noise.connect(filter);
+        filter.connect(gain);
+        gain.connect(ctx.destination);
+        noise.start(now);
+      } catch (e) {
+        console.warn('Audio FX error', e);
+      }
+    }
+
+    function playChimeSound() {
+      try {
+        const ctx = getAudioCtx();
+        const now = ctx.currentTime;
+        const notes = [528, 660, 792];
+
+        notes.forEach((freq, idx) => {
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          const startTime = now + idx * 0.04;
+
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(freq, startTime);
+
+          gain.gain.setValueAtTime(0, startTime);
+          gain.gain.linearRampToValueAtTime(0.12 / (idx + 1), startTime + 0.02);
+          gain.gain.exponentialRampToValueAtTime(0.0001, startTime + 1.2);
+
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+
+          osc.start(startTime);
+          osc.stop(startTime + 1.25);
+        });
+      } catch (e) {
+        console.warn('Audio FX error', e);
+      }
+    }
+
+    // Curated Resilience Stories Dataset
+    const resilienceStories = [
+      {
+        id: 'story-vangogh',
+        tag: 'Art & Deep Darkness',
+        title: 'Painting Through the Longest Night',
+        figure: 'Vincent van Gogh (1853 – 1890)',
+        preview: 'He spent months inside an asylum window, convinced that his life was a failure. Yet it was in that very room that he painted a sky full of dancing, unquenchable stars.',
+        quote: '“For my part I know nothing with any certainty, but the sight of the stars makes me dream.”',
+        body: `
+          <p>During the spring of 1889, Vincent van Gogh voluntarily admitted himself into the Saint-Paul asylum in Saint-Rémy. He was overwhelmed by loneliness, chronic poverty, and bouts of terrifying mental collapse. The world around him saw an eccentric, broken man who had only managed to sell one single painting throughout his entire lifetime.</p>
+          <p>Looking out from his barred window just before sunrise, he saw the morning star looking extraordinarily large and bright. Instead of surrendering to despair, he poured the turbulent storm of his chest onto canvas with furious, swirling strokes of ultramarine and golden amber. That canvas became <em>The Starry Night</em>.</p>
+          <p>Vincent never lived to see museums built in his name or millions of people weeping before his sunflowers. Yet his life proves that the darkness you are passing through today does not mean your existence is empty. Even when the world feels blind to your worth, your light continues to quietly form.</p>
+        `,
+        takeaway: 'Your lowest, quietest seasons might be where your deepest grace is being born. Don’t rush to extinguish yourself.'
+      },
+      {
+        id: 'story-frida',
+        tag: 'Physical Pain & Endurance',
+        title: 'Wings in the Middle of Cages',
+        figure: 'Frida Kahlo (1907 – 1954)',
+        preview: 'Bedridden for months after a catastrophic bus accident and subjected to over 30 surgeries, she hung a mirror above her canopy bed and learned to transform agonizing pain into raw truth.',
+        quote: '“Feet, what do I need you for if I have wings to fly?”',
+        body: `
+          <p>At 18, Frida’s life shattered when an iron handrail pierced her pelvis in a collision. Doctors doubted she would ever walk again. Trapped inside full-body plaster casts, enduring relentless spine pain that would haunt her until her final day, she picked up her father’s brushes.</p>
+          <p>Her mother mounted a mirror above her bed so she could see herself. Frida began painting her fractures, her weeping tears, her roots, and her unyielding gaze. She did not disguise pain as pretty; she looked agony in the eyes and made it confess its humanity.</p>
+          <p>When your body or your circumstances place you in an involuntary cage, remember Frida: pain can break our plans, but it can never confiscate our power to feel, to speak, and to love fiercely.</p>
+        `,
+        takeaway: 'Vulnerability is not weakness. Acknowledging your wounds is the first step toward wearing them as wings.'
+      },
+      {
+        id: 'story-keanu',
+        tag: 'Grief & Gentle Heart',
+        title: 'The Man Who Refused to Turn Cold',
+        figure: 'Keanu Reeves (Actor & Philanthropist)',
+        preview: 'Having lost his closest friend, his unborn daughter, and the love of his life within a few short years, he chose radical gentleness and quiet generosity over bitterness.',
+        quote: '“Grief changes shape, but it never ends. But with patience, it can become a companion that teaches us love.”',
+        body: `
+          <p>Keanu’s life could easily have read like a tragedy: his father abandoned his family in childhood, his best friend River Phoenix died young, his daughter was stillborn, and less than two years later, his partner Jennifer Syme died in a car crash.</p>
+          <p>Many people who experience such compounding heartbreak grow guarded, cynical, or cruel to protect themselves from further pain. Keanu made the opposite choice. He rides the subway quietly, buys lunch for set workers, donates millions anonymously to children’s hospitals, and treats every passing stranger with tender dignity.</p>
+          <p>Grief did not harden his heart; it softened it into an ocean of empathy. If life has taken pieces from you, you don’t have to let the cold win. Kindness is the ultimate triumph over sorrow.</p>
+        `,
+        takeaway: 'Heartbreak doesn’t have to make you hard. Staying gentle in a harsh world is courage of the highest order.'
+      },
+      {
+        id: 'story-marcus',
+        tag: 'Solitude & Inner Anchor',
+        title: 'The Emperor Who Wrote in the Mud',
+        figure: 'Marcus Aurelius (121 – 180 AD)',
+        preview: 'Leading an empire through devastating pandemics, betrayal by close generals, and brutal warfare, he sat by candlelight each night to remind himself how to be calm.',
+        quote: '“Be like the promontory against which the waves continually break, but it stands firm and tames the fury of the water around it.”',
+        body: `
+          <p>Marcus Aurelius never intended for his journal, <em>Meditations</em>, to be read by anyone. He wrote it in dirty military tents along the freezing Danube border, struggling with poor health, mourning the loss of eight of his children, and managing an empire gripped by the Antonine Plague.</p>
+          <p>He did not write to boast of conquests. He wrote to talk himself down from anger, anxiety, and exhaustion: <em>‘When you wake up in the morning, tell yourself: the people I deal with today will be meddling, ungrateful, arrogant... but they cannot injure me, for none can implicate me in ugliness.’</em></p>
+          <p>When the storm around you is loud and demanding, your only true duty is to guard the little citadel inside your own chest. Peace is not found in controlling the world, but in choosing your reaction to it.</p>
+        `,
+        takeaway: 'You cannot control the waves crashing into your day, but you can always decide not to become the storm.'
+      },
+      {
+        id: 'story-maya',
+        tag: 'Silence to Symphony',
+        title: 'Finding Voice in Five Years of Silence',
+        figure: 'Maya Angelou (1928 – 2014)',
+        preview: 'Traumatized into complete mutism for nearly six years as a child, she believed her voice could kill people. Later, that very voice comforted nations and shook generations.',
+        quote: '“You may encounter many defeats, but you must not be defeated.”',
+        body: `
+          <p>After enduring brutal abuse at age seven, young Maya spoke the abuser’s name in court; days later, the man was killed. Overcome with guilt, Maya convinced herself that her voice had taken a human life. For five and a half years, she did not speak a single word to anyone except her brother.</p>
+          <p>During that vast, desolate silence, she listened to the rhythm of books, memorized poetry, and observed the unspoken aches of the people around her. A kind teacher named Mrs. Flowers finally told her: <em>‘Poetry requires the human voice to infuse it with the shades of deeper meaning.’</em></p>
+          <p>When Maya finally spoke, she spoke not just for herself, but for every voiceless, wounded child on earth. Your current silence and pain are not the end of your chapter; they may be the quiet ground where your most powerful voice is waiting.</p>
+        `,
+        takeaway: 'The chapters where you feel paralyzed or broken do not cancel the beauty of the whole book.'
+      },
+      {
+        id: 'story-rowling',
+        tag: 'Rock Bottom & Reinvention',
+        title: 'The Door That Opens When All Others Close',
+        figure: 'J.K. Rowling (Author)',
+        preview: 'A jobless single mother living on state benefits, diagnosed with clinical depression, writing chapter outlines on napkins in chilly Edinburgh cafes.',
+        quote: '“Rock bottom became the solid foundation on which I rebuilt my life.”',
+        body: `
+          <p>Seven years after graduating, she felt like the biggest failure she knew. Her brief marriage had violently collapsed, she was jobless, alone with a dependent baby, and so poor that she was one signature away from being completely unhoused in the Scottish winter.</p>
+          <p>Yet, having hit rock bottom gave her an unexpected liberation. All false pretenses of who she was supposed to be were stripped away. She stopped pretending she was anything other than what she genuinely was: someone who loved to tell stories.</p>
+          <p>Twelve major publishing houses rejected her manuscript before a tiny editor finally gave her a chance with an advance of just £1,500. Rock bottom is painful and cold, but it has one gift: it is solid rock. You cannot fall any further, and from there, every single step is upward.</p>
+        `,
+        takeaway: 'When every door has closed, you are finally free to build a window of your own making.'
+      }
+    ];
+
+    // Seed Notes Dataset[cite: 2]
+    const seedNotes = [
+      {
+        id: 'note-1',
+        author: 'Quiet Meadow',
+        mood: 'Burnout',
+        content: 'Third night this week I cried in the office bathroom. I keep telling everyone I am fine because saying it out loud makes it real. I am so tired of having to be the strong one all the time.',
+        timestamp: Date.now() - (14 * 60 * 1000),
+        hugs: 28,
+        candles: 11,
+        warmth: 19,
+        reports: 0,
+        comments: [
+          { author: 'Warm Ember', text: 'You are allowed to fall apart. You don’t have to carry the whole world on your shoulders tonight. Please rest without guilt 🤍', timestamp: Date.now() - (10 * 60 * 1000) },
+          { author: 'Still River', text: 'I felt this so deeply. Wash your face, drink some water, and remember that your worth is not tied to how much pain you can tolerate.', timestamp: Date.now() - (6 * 60 * 1000) },
+          { author: 'Distant Star', text: 'Sending you the biggest, gentlest hug across the screen. You’re surviving, and that is already more than enough.', timestamp: Date.now() - (2 * 60 * 1000) }
+        ]
+      },
+      {
+        id: 'note-2',
+        author: 'Drifting Cloud',
+        mood: 'Anxiety',
+        content: 'I said the wrong thing in a team meeting today and now my chest has felt tight for six hours. My brain keeps replaying the pause right after I spoke on a continuous loop. I wish I had a pause button for my own thoughts.',
+        timestamp: Date.now() - (38 * 60 * 1000),
+        hugs: 22,
+        candles: 9,
+        warmth: 14,
+        reports: 0,
+        comments: [
+          { author: 'Silent Willow', text: 'I promise you, nobody analyzed your words half as harshly as your anxious brain is right now. Most people were thinking about their own day.', timestamp: Date.now() - (25 * 60 * 1000) },
+          { author: 'Morning Dew', text: 'Place one hand on your chest right now. Take three slow breaths. The moment has passed, and you are safe.', timestamp: Date.now() - (12 * 60 * 1000) }
+        ]
+      },
+      {
+        id: 'note-3',
+        author: 'Soft Lantern',
+        mood: 'Heartbroken',
+        content: 'I walked past their favorite coffee shop on my way home and instinctively reached into my pocket to text them. It takes so much physical energy every single day to remember that we do not speak anymore.',
+        timestamp: Date.now() - (65 * 60 * 1000),
+        hugs: 45,
+        candles: 23,
+        warmth: 31,
+        reports: 0,
+        comments: [
+          { author: 'Autumn Leaf', text: 'The phantom habit is the hardest part. Be tender with yourself. Healing isn’t linear, and missing them doesn’t mean you aren’t making progress.', timestamp: Date.now() - (45 * 60 * 1000) },
+          { author: 'Gentle Breeze', text: 'One day you’ll walk past that shop and feel nothing but peaceful gratitude for who you became after. It takes time, but it comes.', timestamp: Date.now() - (30 * 60 * 1000) },
+          { author: 'Warm Ember', text: 'Holding space for your heartache tonight. You will love and be loved again 🕯️', timestamp: Date.now() - (15 * 60 * 1000) }
+        ]
+      },
+      {
+        id: 'note-4',
+        author: 'Whispering Pine',
+        mood: 'Lonely',
+        content: 'I cooked a nice dinner tonight, plated it nicely, sat down, and realized nobody in this city knows whether I ate or not today. Living alone in your twenties is strangely quiet.',
+        timestamp: Date.now() - (150 * 60 * 1000),
+        hugs: 37,
+        candles: 16,
+        warmth: 26,
+        reports: 0,
+        comments: [
+          { author: 'Still River', text: 'Proud of you for taking the time to cook for yourself. That in itself is an act of gentle self-love.', timestamp: Date.now() - (90 * 60 * 1000) },
+          { author: 'Quiet Meadow', text: 'We know now! Eating dinner with you in spirit from another quiet apartment across the city 🍲', timestamp: Date.now() - (40 * 60 * 1000) }
+        ]
+      },
+      {
+        id: 'note-5',
+        author: 'Morning Dew',
+        mood: 'Grieving',
+        content: 'My grandfather used to leave his radio playing softly in the garden. He passed away last month, and every afternoon when the sun sets at this angle, the silence in that garden feels louder than a scream.',
+        timestamp: Date.now() - (300 * 60 * 1000),
+        hugs: 54,
+        candles: 30,
+        warmth: 41,
+        reports: 0,
+        comments: [
+          { author: 'Soft Lantern', text: 'Grief is love with nowhere to go. Plant something small in that garden when you are ready. His gentleness stays with you 🕯️', timestamp: Date.now() - (200 * 60 * 1000) },
+          { author: 'Silent Willow', text: 'Holding a tender moment of quiet silence with you tonight.', timestamp: Date.now() - (110 * 60 * 1000) }
+        ]
+      },
+      {
+        id: 'note-6',
+        author: 'Autumn Leaf',
+        mood: 'Drained',
+        content: 'I haven’t felt excited about any of my hobbies in months. Everything feels like another chore on an endless checklist. I just want to feel genuinely inspired again.',
+        timestamp: Date.now() - (480 * 60 * 1000),
+        hugs: 33,
+        candles: 14,
+        warmth: 20,
+        reports: 0,
+        comments: [
+          { author: 'Drifting Cloud', text: 'When soil is exhausted, it lies fallow for a season. You aren’t broken, you’re just replenishing. Give yourself permission to do nothing.', timestamp: Date.now() - (350 * 60 * 1000) },
+          { author: 'Warm Ember', text: 'Do not force the spark. Rest first. Passion always finds its way back when you have room to breathe.', timestamp: Date.now() - (180 * 60 * 1000) }
+        ]
+      }
+    ];
+
+    // Seed Glimmers Dataset (Exact match: Helping elderly lady on Unsplash)
+    const seedGlimmers = [
+      {
+        id: 'glimmer-1',
+        author: 'Gentle Breeze',
+        tag: 'Human Kindness',
+        image: 'https://images.unsplash.com/photo-1581579438747-1dc8d17bbce4?auto=format&fit=crop&w=800&q=80',
+        caption: 'Saw a young delivery driver gently helping an elderly lady carry her heavy groceries up the bridge stairs. Nobody asked him to. Humanity is still so warm.',
+        timestamp: Date.now() - (45 * 60 * 1000),
+        lights: 34,
+        smiles: 29,
+        comments: [
+          { author: 'Warm Ember', text: 'This healed something in my chest today. Thank you for capturing it 💛', timestamp: Date.now() - (30 * 60 * 1000) }
+        ]
+      },
+      {
+        id: 'glimmer-2',
+        author: 'Still River',
+        tag: 'Family & Joy',
+        image: 'https://images.unsplash.com/photo-1555252333-9f8e92e65df9?auto=format&fit=crop&w=800&q=80',
+        caption: 'My sister brought her newborn daughter home today. Seeing this tiny, fragile human sleeping so peacefully in her father’s hands gave me so much peace.',
+        timestamp: Date.now() - (120 * 60 * 1000),
+        lights: 52,
+        smiles: 48,
+        comments: [
+          { author: 'Morning Dew', text: 'Welcome to this world, little soul. May life be gentle to you ✨', timestamp: Date.now() - (60 * 60 * 1000) }
+        ]
+      },
+      {
+        id: 'glimmer-3',
+        author: 'Silent Willow',
+        tag: 'Gentle Nature',
+        image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80',
+        caption: 'Caught this golden twilight accidentally while walking home in silence. The sea was breathing so slowly. It made all my worries feel so very small.',
+        timestamp: Date.now() - (240 * 60 * 1000),
+        lights: 41,
+        smiles: 35,
+        comments: []
+      }
+    ];
+
+    const seedInbox = [
+      { id: 'ib-1', text: 'A stranger just lit a candle for your note.', time: Date.now() - (5 * 60 * 1000) },
+      { id: 'ib-2', text: 'Someone wrapped your note in a warm hug 🫂', time: Date.now() - (22 * 60 * 1000) }
+    ];
+
+    // ========================================================
+    // PRESENTATION-READY STORAGE (NEVER PURGES AFTER 24H)
+    // ========================================================
+    function getStoredNotes() {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      let notes = [];
+      try {
+        notes = raw ? JSON.parse(raw) : [];
+      } catch (e) { notes = []; }
+
+      // Always restore seedNotes if empty so presentation is never blank
+      if (!notes || notes.length === 0) {
+        notes = [...seedNotes];
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(notes));
+      } else {
+        // Guarantee default demo notes always exist
+        seedNotes.forEach(seed => {
+          if (!notes.some(n => n.id === seed.id)) {
+            notes.push(seed);
+          }
+        });
+      }
+      return notes;
+    }
+
+    function saveNotes(notes) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(notes));
+      renderNotes();
+      updateStats();
+    }
+
+    function getStoredGlimmers() {
+      const raw = localStorage.getItem(GLIMMERS_KEY);
+      let glimmers = [];
+      try {
+        glimmers = raw ? JSON.parse(raw) : [];
+      } catch (e) { glimmers = []; }
+
+      if (!glimmers || glimmers.length === 0) {
+        glimmers = [...seedGlimmers];
+        localStorage.setItem(GLIMMERS_KEY, JSON.stringify(glimmers));
+      } else {
+        seedGlimmers.forEach(seed => {
+          if (!glimmers.some(g => g.id === seed.id)) {
+            glimmers.push(seed);
+          }
+        });
+      }
+      return glimmers;
+    }
+
+    function saveGlimmers(glimmers) {
+      localStorage.setItem(GLIMMERS_KEY, JSON.stringify(glimmers));
+      renderGlimmers();
+    }
+
+    function getMyCreatedNoteIds() {
+      const raw = localStorage.getItem(MY_NOTES_KEY);
+      return raw ? JSON.parse(raw) : ['note-1', 'glimmer-1'];
+    }
+
+    function addMyCreatedNoteId(id) {
+      const ids = getMyCreatedNoteIds();
+      ids.push(id);
+      localStorage.setItem(MY_NOTES_KEY, JSON.stringify(ids));
+    }
+
+    function getInboxItems() {
+      const raw = localStorage.getItem(INBOX_KEY);
+      let items = [];
+      try {
+        items = raw ? JSON.parse(raw) : [];
+      } catch (e) { items = []; }
+
+      if (!items || items.length === 0) {
+        items = [...seedInbox];
+        localStorage.setItem(INBOX_KEY, JSON.stringify(items));
+      }
+      return items;
+    }
+
+    function addInboxNotification(message) {
+      let items = getInboxItems();
+      items.unshift({ id: 'ib-' + Date.now(), text: message, time: Date.now() });
+      localStorage.setItem(INBOX_KEY, JSON.stringify(items));
+      renderInbox();
+      showToast(message);
+    }
+
+    function showToast(message) {
+      const container = document.getElementById('toastContainer');
+      const toast = document.createElement('div');
+      toast.className = 'toast-animate bg-white border border-warm-200 rounded-2xl p-4 shadow-card flex items-center gap-3 text-xs text-charcoal-800 pointer-events-auto';
+      toast.innerHTML = `<span class="text-base">🕯️</span><div class="flex-1 font-medium">${escapeHtml(message)}</div>`;
+      container.appendChild(toast);
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateY(-10px)';
+        toast.style.transition = 'all 0.3s ease';
+        setTimeout(() => toast.remove(), 300);
+      }, 4500);
+    }
+
+    function renderInbox() {
+      const items = getInboxItems();
+      const list = document.getElementById('inboxItemsList');
+      const badge = document.getElementById('inboxUnreadBadge');
+      
+      list.innerHTML = '';
+      if (items.length > 0) {
+        badge.classList.remove('hidden');
+        items.forEach(item => {
+          const el = document.createElement('div');
+          el.className = 'p-3 bg-[#faf7f2] rounded-xl text-xs text-charcoal-700 border border-warm-200/70 space-y-1';
+          el.innerHTML = `
+            <div class="font-medium">${escapeHtml(item.text)}</div>
+            <div class="text-[10px] text-charcoal-400">${calculateTimeAgo(item.time)}</div>
+          `;
+          list.appendChild(el);
+        });
+      } else {
+        badge.classList.add('hidden');
+        list.innerHTML = `<div class="text-center py-6 text-xs text-charcoal-400 italic">No whispers received yet. Your notifications will fade after 24h.</div>`;
+      }
+    }
+
+    document.getElementById('inboxToggleBtn').addEventListener('click', () => {
+      document.getElementById('inboxDropdown').classList.toggle('hidden');
+      document.getElementById('inboxUnreadBadge').classList.add('hidden');
+    });
+
+    document.getElementById('clearInboxBtn').addEventListener('click', () => {
+      localStorage.setItem(INBOX_KEY, JSON.stringify([]));
+      renderInbox();
+    });
+
+    // Simulated 24h Countdown for Presentation (Always displays realistic time, never expires)
+    function calculateTimeRemaining(timestamp) {
+      let elapsed = Date.now() - timestamp;
+      // Loop smoothly inside 20 hours for demo presentation so items never expire
+      elapsed = elapsed % (20 * 60 * 60 * 1000);
+      const remainingMs = ONE_DAY_MS - elapsed;
+      const hours = Math.max(1, Math.floor(remainingMs / (1000 * 60 * 60)));
+      return `fades in ${hours}h`;
+    }
+
+    function calculateTimeAgo(timestamp) {
+      let elapsed = Date.now() - timestamp;
+      elapsed = elapsed % (20 * 60 * 60 * 1000);
+      const mins = Math.floor(elapsed / 60000);
+      if (mins < 1) return 'just now';
+      if (mins < 60) return `${mins}m ago`;
+      const hrs = Math.floor(mins / 60);
+      return `${hrs}h ago`;
+    }
+
+    // Mood Tag Selector (Hero)[cite: 5]
+    const moodButtons = document.querySelectorAll('.mood-pill');
+    const empathyBanner = document.getElementById('empathyStatBanner');
+    const empathyText = document.getElementById('empathyStatText');
+
+    moodButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        moodButtons.forEach(b => b.classList.remove('bg-terracotta-50', 'border-terracotta-500', 'text-terracotta-700', 'shadow-sm'));
+        btn.classList.add('bg-terracotta-50', 'border-terracotta-500', 'text-terracotta-700', 'shadow-sm');
+        
+        currentSelectedMood = btn.getAttribute('data-mood');
+        const count = btn.getAttribute('data-count');
+        
+        empathyBanner.classList.remove('hidden');
+        empathyText.innerHTML = `Today, <b>${count}</b> other people feel <b>${currentSelectedMood}</b> like you. You are not alone.`;
+      });
+    });
+
+    // Ritual Selector
+    const ritualPills = document.querySelectorAll('.ritual-pill');
+    ritualPills.forEach(pill => {
+      pill.addEventListener('click', () => {
+        ritualPills.forEach(p => {
+          p.className = 'ritual-pill px-3 py-2 rounded-xl text-xs font-medium bg-[#fcfaf7] border border-warm-200 text-charcoal-700 text-center transition-all hover:border-warm-300';
+        });
+        pill.className = 'ritual-pill px-3 py-2 rounded-xl text-xs font-medium bg-terracotta-50 border border-terracotta-500 text-terracotta-700 text-center transition-all';
+        selectedRitual = pill.getAttribute('data-ritual');
+      });
+    });
+
+    // Character counter
+    const ventInput = document.getElementById('ventInput');
+    const charCount = document.getElementById('charCount');
+    ventInput.addEventListener('input', (e) => {
+      charCount.textContent = `${e.target.value.length} / 800 characters`;
+    });
+
+    // Feed Sort[cite: 2]
+    const sortBtns = document.querySelectorAll('.sort-btn');
+    sortBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        sortBtns.forEach(b => b.className = 'sort-btn px-4 py-1.5 rounded-full text-xs font-medium bg-white border border-warm-200 text-charcoal-600 hover:bg-warm-100 transition-all');
+        btn.className = 'sort-btn px-4 py-1.5 rounded-full text-xs font-medium bg-charcoal-900 text-white transition-all shadow-sm';
+        currentSortFilter = btn.getAttribute('data-filter');
+        renderNotes();
+      });
+    });
+
+    // Feed Mood Filter[cite: 2, 5]
+    const feedMoodPills = document.querySelectorAll('.feed-mood-pill');
+    feedMoodPills.forEach(pill => {
+      pill.addEventListener('click', () => {
+        feedMoodPills.forEach(p => p.className = 'feed-mood-pill px-3 py-1 rounded-full shrink-0 font-medium bg-white border border-warm-200 text-charcoal-600 hover:bg-warm-100 transition-all');
+        pill.className = 'feed-mood-pill px-3 py-1 rounded-full shrink-0 font-medium bg-terracotta-500 text-white transition-all';
+        currentFeedMoodFilter = pill.getAttribute('data-feed-mood');
+        renderNotes();
+      });
+    });
+
+    // Crisis Scanner
+    function checkContentSafety(text) {
+      const lower = text.toLowerCase();
+      const isCrisis = CRISIS_WORDS.some(w => lower.includes(w));
+      const isToxic = TOXIC_WORDS.some(w => lower.includes(w));
+      return { isCrisis, isToxic };
+    }
+
+    const aiGuardModal = document.getElementById('aiGuardModal');
+    const crisisModal = document.getElementById('crisisModal');
+    document.getElementById('closeAiGuardBtn').addEventListener('click', () => aiGuardModal.classList.add('hidden'));
+    document.getElementById('closeCrisisBtn').addEventListener('click', () => crisisModal.classList.add('hidden'));
+
+    // Submit Note with Ritual Animation & Pay It Forward
+    const postNoteBtn = document.getElementById('postNoteBtn');
+
+    postNoteBtn.addEventListener('click', () => {
+      const text = ventInput.value.trim();
+      if (!text) {
+        alert('Please share what is on your mind.');
+        return;
+      }
+
+      const safety = checkContentSafety(text);
+      if (safety.isCrisis) { crisisModal.classList.remove('hidden'); return; }
+      if (safety.isToxic) { aiGuardModal.classList.remove('hidden'); return; }
+
+      postNoteBtn.disabled = true;
+
+      if (selectedRitual === 'ashes') ventInput.classList.add('animate-burn');
+      else if (selectedRitual === 'lantern') ventInput.classList.add('animate-lantern');
+      else if (selectedRitual === 'ocean') ventInput.classList.add('animate-ocean');
+
+      setTimeout(() => {
+        const randomName = natureNames[Math.floor(Math.random() * natureNames.length)];
+        const newId = 'note-' + Date.now();
+        const newNote = {
+          id: newId,
+          author: randomName,
+          mood: currentSelectedMood || 'Heavy Heart',
+          content: text,
+          timestamp: Date.now(),
+          hugs: 1,
+          candles: 1,
+          warmth: 1,
+          reports: 0,
+          comments: []
+        };
+
+        const notes = getStoredNotes();
+        notes.unshift(newNote);
+        saveNotes(notes);
+        addMyCreatedNoteId(newId);
+
+        ventInput.value = '';
+        charCount.textContent = '0 / 800 characters';
+        empathyBanner.classList.add('hidden');
+        moodButtons.forEach(b => b.classList.remove('bg-terracotta-50', 'border-terracotta-500', 'text-terracotta-700', 'shadow-sm'));
+        currentSelectedMood = null;
+
+        ventInput.classList.remove('animate-burn', 'animate-lantern', 'animate-ocean');
+        postNoteBtn.disabled = false;
+
+        triggerPayItForward(newId);
+      }, 1600);
+    });
+
+    // Pay It Forward
+    const payModal = document.getElementById('payItForwardModal');
+    let payTargetNoteId = null;
+
+    function triggerPayItForward(excludeId) {
+      const notes = getStoredNotes().filter(n => n.id !== excludeId && (n.reports || 0) < 3);
+      if (notes.length === 0) return;
+
+      notes.sort((a, b) => (a.hugs + a.candles + a.warmth) - (b.hugs + b.candles + b.warmth));
+      const target = notes[0];
+      payTargetNoteId = target.id;
+
+      document.getElementById('payTargetAuthor').textContent = target.author;
+      document.getElementById('payTargetMood').textContent = target.mood;
+      document.getElementById('payTargetContent').textContent = `"${target.content.substring(0, 110)}..."`;
+
+      payModal.classList.remove('hidden');
+    }
+
+    document.getElementById('paySendHugBtn').addEventListener('click', () => {
+      if (payTargetNoteId) {
+        sendEmpathy(payTargetNoteId, 'hug');
+        showToast('You passed forward a gentle hug to a stranger 🌱');
+      }
+      payModal.classList.add('hidden');
+      document.getElementById('feed-section').scrollIntoView({ behavior: 'smooth' });
+    });
+
+    document.getElementById('paySkipBtn').addEventListener('click', () => {
+      payModal.classList.add('hidden');
+      document.getElementById('feed-section').scrollIntoView({ behavior: 'smooth' });
+    });
+
+    function getMoodBadgeClasses(mood) {
+      switch(mood) {
+        case 'Burnout':
+        case 'Drained': return 'bg-[#feebe3] text-[#c25732] border border-[#fbd4c5]';
+        case 'Anxiety':
+        case 'Overwhelmed': return 'bg-[#fef3e2] text-[#b37319] border border-[#fbe5c5]';
+        case 'Heartbroken':
+        case 'Grieving': return 'bg-[#fde8e8] text-[#c24141] border border-[#facdcd]';
+        case 'Lonely':
+        case 'Invisible': return 'bg-[#f2effb] text-[#7154c4] border border-[#dfd7f7]';
+        case 'Numb':
+        case 'Lost':
+        case 'Regret': return 'bg-[#edf2f7] text-[#4a5568] border border-[#e2e8f0]';
+        case 'Not Enough':
+        case 'Pressure': return 'bg-[#e6fffa] text-[#234e52] border border-[#b2f5ea]';
+        default: return 'bg-warm-150 text-charcoal-700 border border-warm-200';
+      }
+    }
+
+    window.unblurNote = function(noteId) {
+      unblurredNoteIds.add(noteId);
+      renderNotes();
+    };
+
+    window.reportNote = function(noteId) {
+      const myReports = JSON.parse(localStorage.getItem(REPORTS_KEY) || '[]');
+      if (myReports.includes(noteId)) {
+        showToast('You have already reported this note. Thank you for protecting the room.');
+        return;
+      }
+
+      if (confirm('Report this note if it contains harassment, spam, or harmful content? (3 community reports will automatically shelve it)')) {
+        const notes = getStoredNotes();
+        const target = notes.find(n => n.id === noteId);
+        if (target) {
+          target.reports = (target.reports || 0) + 1;
+          myReports.push(noteId);
+          localStorage.setItem(REPORTS_KEY, JSON.stringify(myReports));
+          saveNotes(notes);
+
+          if (target.reports >= 3) {
+            showToast('This note received 3 community reports and has been sheltered from the room 🛡️');
+          } else {
+            showToast('Thank you for helping protect this quiet space.');
+          }
+        }
+      }
+    };
+
+    // Render Notes Feed[cite: 2]
+    const notesContainer = document.getElementById('notesContainer');
+
+    function renderNotes() {
+      let notes = getStoredNotes();
+      notes = notes.filter(n => (n.reports || 0) < 3);
+
+      if (currentFeedMoodFilter !== 'all') {
+        notes = notes.filter(n => n.mood === currentFeedMoodFilter);
+      }
+
+      if (currentSortFilter === 'empathy') {
+        notes.sort((a, b) => (b.hugs + b.candles + b.warmth) - (a.hugs + a.candles + a.warmth));
+      } else if (currentSortFilter === 'fading') {
+        notes.sort((a, b) => a.timestamp - b.timestamp);
+      } else {
+        notes.sort((a, b) => b.timestamp - a.timestamp);
+      }
+
+      notesContainer.innerHTML = '';
+
+      if (notes.length === 0) {
+        notesContainer.innerHTML = `
+          <div class="bg-white rounded-3xl p-10 border border-warm-200 text-center space-y-2">
+            <span class="text-2xl">🍃</span>
+            <p class="text-xs text-charcoal-500 font-medium">No notes under "${currentFeedMoodFilter}" right now. Be the first to leave one.</p>
+          </div>
+        `;
+        return;
+      }
+
+      notes.forEach(note => {
+        const card = document.createElement('article');
+        card.className = 'bg-white rounded-[26px] p-6 md:p-7 border border-warm-200 shadow-soft hover:shadow-card hover:border-warm-300 transition-all duration-300 space-y-4';
+
+        const commentsMarkup = note.comments.map(c => `
+          <div class="bg-[#faf7f2] rounded-2xl p-4 text-xs text-charcoal-700 border border-warm-200/70 transition-all">
+            <div class="text-[10px] text-charcoal-400 mb-1 flex items-center justify-between font-medium">
+              <span class="text-terracotta-600 font-semibold">🤍 ${escapeHtml(c.author)}</span>
+              <span>${calculateTimeAgo(c.timestamp)}</span>
+            </div>
+            <p class="leading-relaxed text-charcoal-800">${escapeHtml(c.text)}</p>
+          </div>
+        `).join('');
+
+        const isSensitive = ['Heartbroken', 'Grieving'].includes(note.mood);
+        const isUnblurred = unblurredNoteIds.has(note.id);
+
+        let contentHtml = '';
+        if (isSensitive && !isUnblurred) {
+          contentHtml = `
+            <div onclick="unblurNote('${note.id}')" class="relative cursor-pointer group py-2">
+              <p class="text-[14px] text-charcoal-800 leading-relaxed font-normal filter blur-md select-none transition-all duration-500">${escapeHtml(note.content)}</p>
+              <div class="absolute inset-0 flex items-center justify-center bg-white/40 backdrop-blur-[2px] rounded-xl transition-all group-hover:bg-white/30">
+                <span class="px-3.5 py-1.5 rounded-full bg-white/95 border border-warm-200 text-charcoal-700 text-xs font-medium shadow-sm flex items-center gap-1.5 transition-transform group-hover:scale-105">
+                  <span>🕊️</span>
+                  <span>Sensitive reflection · Tap gently to read</span>
+                </span>
+              </div>
+            </div>
+          `;
+        } else {
+          contentHtml = `<p class="text-[14px] text-charcoal-800 leading-relaxed font-normal">${escapeHtml(note.content)}</p>`;
+        }
+
+        card.innerHTML = `
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-full bg-terracotta-50 text-terracotta-600 flex items-center justify-center text-sm font-semibold border border-terracotta-100">
+                🪶
+              </div>
+              <div>
+                <h4 class="text-xs font-bold text-charcoal-900">${escapeHtml(note.author)}</h4>
+                <div class="text-[11px] text-charcoal-400 font-medium">
+                  ${calculateTimeAgo(note.timestamp)} · <span class="text-charcoal-500">⏱ ${calculateTimeRemaining(note.timestamp)}</span>
+                </div>
+              </div>
+            </div>
+            <div class="flex items-center gap-2">
+              <button onclick="openKeepsakeModal('${note.id}')" title="Save this comfort as a keepsake postcard" class="text-[11px] text-charcoal-400 hover:text-terracotta-600 px-2 py-1 rounded-lg border border-warm-200 hover:border-terracotta-300 transition flex items-center gap-1">
+                <span>🏷️</span> <span class="hidden sm:inline">Save keepsake</span>
+              </button>
+              <button onclick="reportNote('${note.id}')" title="Report for community safety" class="text-[11px] text-charcoal-400 hover:text-rose-600 px-2 py-1 rounded-lg border border-warm-200 hover:border-rose-300 transition flex items-center gap-1">
+                <span>🚩</span> <span class="hidden sm:inline">Report</span>
+              </button>
+              <span class="px-3 py-1 rounded-full text-[11px] font-semibold ${getMoodBadgeClasses(note.mood)}">
+                ${escapeHtml(note.mood)}
+              </span>
+            </div>
+          </div>
+
+          ${contentHtml}
+
+          <div class="pt-3 border-t border-warm-150 flex flex-wrap items-center justify-between gap-2 text-xs">
+            <div class="flex items-center gap-2">
+              <button onclick="sendEmpathy('${note.id}', 'hug')" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#faf7f2] hover:bg-warm-150 border border-warm-200 text-charcoal-700 transition active:scale-95 text-xs font-medium">
+                <span>🫂 Send a hug</span>
+                <span class="font-bold text-charcoal-900">${note.hugs}</span>
+              </button>
+
+              <button onclick="sendEmpathy('${note.id}', 'candle')" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#faf7f2] hover:bg-warm-150 border border-warm-200 text-charcoal-700 transition active:scale-95 text-xs font-medium">
+                <span>🕯️ Light a candle</span>
+                <span class="font-bold text-charcoal-900">${note.candles}</span>
+              </button>
+
+              <button onclick="sendEmpathy('${note.id}', 'warmth')" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#faf7f2] hover:bg-warm-150 border border-warm-200 text-charcoal-700 transition active:scale-95 text-xs font-medium">
+                <span>💛 Send warmth</span>
+                <span class="font-bold text-charcoal-900">${note.warmth}</span>
+              </button>
+            </div>
+
+            <button onclick="toggleReplies('${note.id}')" class="text-charcoal-500 hover:text-charcoal-800 text-xs flex items-center gap-1.5 font-semibold px-2 py-1 rounded-lg hover:bg-warm-100 transition">
+              <span>💬</span>
+              <span>${note.comments.length} replies</span>
+            </button>
+          </div>
+
+          <div id="replySection-${note.id}" class="hidden pt-4 border-t border-warm-150 space-y-3">
+            <div class="space-y-2">
+              ${commentsMarkup.length > 0 ? commentsMarkup : '<div class="text-[11px] text-charcoal-400 italic py-1">Be the first to leave a kind word for this soul.</div>'}
+            </div>
+            <div class="flex gap-2 pt-2">
+              <input type="text" id="replyInput-${note.id}" placeholder="Leave a gentle reply..." class="flex-1 bg-[#faf7f2] border border-warm-200 rounded-xl px-3.5 py-2 text-xs text-charcoal-800 placeholder:text-charcoal-400 focus:outline-none focus:border-terracotta-500 transition">
+              <button onclick="addReply('${note.id}')" class="px-4 py-2 bg-terracotta-500 hover:bg-terracotta-600 text-white rounded-xl text-xs font-medium transition shadow-sm">Reply</button>
+            </div>
+          </div>
+        `;
+
+        notesContainer.appendChild(card);
+      });
+    }
+
+    // Reaction handler for Notes[cite: 2]
+    window.sendEmpathy = function(noteId, type) {
+      const notes = getStoredNotes();
+      const item = notes.find(n => n.id === noteId);
+      if (item) {
+        let reactionName = 'a warm reaction';
+
+        if (type === 'hug') {
+          item.hugs++;
+          reactionName = 'a gentle hug 🫂';
+          playChimeSound();
+        }
+        if (type === 'candle') {
+          item.candles++;
+          reactionName = 'a candle light 🕯️';
+          playMatchSound();
+        }
+        if (type === 'warmth') {
+          item.warmth++;
+          reactionName = 'pure warmth 💛';
+          playChimeSound();
+        }
+
+        saveNotes(notes);
+
+        const myNotes = getMyCreatedNoteIds();
+        if (myNotes.includes(noteId)) {
+          addInboxNotification(`A stranger sent ${reactionName} to your note.`);
+        }
+      }
+    };
+
+    window.toggleReplies = function(noteId) {
+      document.getElementById(`replySection-${noteId}`).classList.toggle('hidden');
+    };
+
+    window.addReply = function(noteId) {
+      const input = document.getElementById(`replyInput-${noteId}`);
+      const text = input.value.trim();
+      if (!text) return;
+
+      const safety = checkContentSafety(text);
+      if (safety.isCrisis) { crisisModal.classList.remove('hidden'); return; }
+      if (safety.isToxic) { aiGuardModal.classList.remove('hidden'); return; }
+
+      const notes = getStoredNotes();
+      const target = notes.find(n => n.id === noteId);
+      if (target) {
+        target.comments.push({
+          author: natureNames[Math.floor(Math.random() * natureNames.length)],
+          text: text,
+          timestamp: Date.now()
+        });
+        saveNotes(notes);
+        input.value = '';
+        document.getElementById(`replySection-${noteId}`).classList.remove('hidden');
+
+        playChimeSound();
+
+        const myNotes = getMyCreatedNoteIds();
+        if (myNotes.includes(noteId)) {
+          addInboxNotification(`A stranger left a gentle reply on your note.`);
+        }
+      }
+    };
+
+    // ========================================================
+    // GLIMMERS GALLERY & UPLOAD LOGIC
+    // ========================================================
+    const glimmersContainer = document.getElementById('glimmersContainer');
+    const glimmerModal = document.getElementById('glimmerModal');
+    const openGlimmerUploadBtn = document.getElementById('openGlimmerUploadBtn');
+    const closeGlimmerModalBtn = document.getElementById('closeGlimmerModalBtn');
+    const glimmerDropZone = document.getElementById('glimmerDropZone');
+    const glimmerFileInput = document.getElementById('glimmerFileInput');
+    const glimmerUploadPrompt = document.getElementById('glimmerUploadPrompt');
+    const glimmerPreviewContainer = document.getElementById('glimmerPreviewContainer');
+    const glimmerPreviewImg = document.getElementById('glimmerPreviewImg');
+    const removeGlimmerImgBtn = document.getElementById('removeGlimmerImgBtn');
+    const glimmerCaptionInput = document.getElementById('glimmerCaptionInput');
+    const submitGlimmerBtn = document.getElementById('submitGlimmerBtn');
+
+    openGlimmerUploadBtn.addEventListener('click', () => {
+      glimmerModal.classList.remove('hidden');
+    });
+
+    closeGlimmerModalBtn.addEventListener('click', () => {
+      glimmerModal.classList.add('hidden');
+    });
+
+    const glimmerTagBtns = document.querySelectorAll('.glimmer-tag-btn');
+    glimmerTagBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        glimmerTagBtns.forEach(b => {
+          b.className = 'glimmer-tag-btn px-3 py-1 rounded-full text-xs font-medium bg-[#fcfaf7] border border-warm-200 text-charcoal-700 hover:border-warm-300 transition';
+        });
+        btn.className = 'glimmer-tag-btn px-3 py-1 rounded-full text-xs font-medium bg-terracotta-50 border border-terracotta-500 text-terracotta-700 transition';
+        selectedGlimmerTag = btn.getAttribute('data-tag');
+      });
+    });
+
+    glimmerDropZone.addEventListener('click', () => {
+      glimmerFileInput.click();
+    });
+
+    glimmerFileInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) processImageFile(file);
+    });
+
+    removeGlimmerImgBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      glimmerImageBase64 = null;
+      glimmerFileInput.value = '';
+      glimmerPreviewContainer.classList.add('hidden');
+      glimmerUploadPrompt.classList.remove('hidden');
+    });
+
+    function processImageFile(file) {
+      if (file.size > 5 * 1024 * 1024) {
+        alert('Please choose an image under 5MB.');
+        return;
+      }
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        glimmerImageBase64 = event.target.result;
+        glimmerPreviewImg.src = glimmerImageBase64;
+        glimmerUploadPrompt.classList.add('hidden');
+        glimmerPreviewContainer.classList.remove('hidden');
+      };
+      reader.readAsDataURL(file);
+    }
+
+    submitGlimmerBtn.addEventListener('click', () => {
+      if (!glimmerImageBase64) {
+        alert('Please pick a warm photo to share with the room.');
+        return;
+      }
+      const caption = glimmerCaptionInput.value.trim();
+      if (!caption) {
+        alert('Please leave a few gentle words about this moment.');
+        return;
+      }
+
+      const randomName = natureNames[Math.floor(Math.random() * natureNames.length)];
+      const newId = 'glimmer-' + Date.now();
+      const newGlimmer = {
+        id: newId,
+        author: randomName,
+        tag: selectedGlimmerTag,
+        image: glimmerImageBase64,
+        caption: caption,
+        timestamp: Date.now(),
+        lights: 1,
+        smiles: 1,
+        comments: []
+      };
+
+      const glimmers = getStoredGlimmers();
+      glimmers.unshift(newGlimmer);
+      saveGlimmers(glimmers);
+      addMyCreatedNoteId(newId);
+
+      glimmerImageBase64 = null;
+      glimmerCaptionInput.value = '';
+      glimmerFileInput.value = '';
+      glimmerPreviewContainer.classList.add('hidden');
+      glimmerUploadPrompt.classList.remove('hidden');
+      glimmerModal.classList.add('hidden');
+
+      showToast('Your glimmer of warmth was shared with the world ✨');
+      document.getElementById('glimmers-section').scrollIntoView({ behavior: 'smooth' });
+    });
+
+    function renderGlimmers() {
+      const glimmers = getStoredGlimmers();
+      glimmersContainer.innerHTML = '';
+
+      if (glimmers.length === 0) {
+        glimmersContainer.innerHTML = `
+          <div class="col-span-full bg-white rounded-3xl p-12 border border-warm-200 text-center space-y-2">
+            <span class="text-3xl">🕊️</span>
+            <p class="text-xs text-charcoal-500 font-medium">No glimmers left right now. Be the first to bring a ray of light into this space.</p>
+          </div>
+        `;
+        return;
+      }
+
+      glimmers.forEach(g => {
+        const card = document.createElement('div');
+        card.className = 'bg-white rounded-[26px] p-5 border border-warm-200 shadow-soft hover:shadow-card transition-all duration-300 flex flex-col justify-between space-y-4 group';
+
+        const commentsMarkup = g.comments.map(c => `
+          <div class="bg-[#faf7f2] rounded-xl p-3 text-xs text-charcoal-700 border border-warm-200/60">
+            <div class="text-[10px] text-charcoal-400 mb-1 flex items-center justify-between font-medium">
+              <span class="text-terracotta-600 font-semibold">🤍 ${escapeHtml(c.author)}</span>
+              <span>${calculateTimeAgo(c.timestamp)}</span>
+            </div>
+            <p class="leading-relaxed text-charcoal-800">${escapeHtml(c.text)}</p>
+          </div>
+        `).join('');
+
+        card.innerHTML = `
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="text-xs font-bold text-charcoal-900">${escapeHtml(g.author)}</span>
+                <span class="text-[10px] text-charcoal-400">• ${calculateTimeAgo(g.timestamp)}</span>
+              </div>
+              <span class="px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-terracotta-50 text-terracotta-700 border border-terracotta-100">
+                ${escapeHtml(g.tag)}
+              </span>
+            </div>
+
+            <div class="w-full h-56 rounded-2xl overflow-hidden bg-[#faf7f2] relative border border-warm-150">
+              <img src="${g.image}" alt="Glimmer moment" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+              <div class="absolute bottom-2 right-2 px-2.5 py-0.5 rounded-full bg-black/60 backdrop-blur-sm text-white text-[10px] font-medium">
+                ⏱ ${calculateTimeRemaining(g.timestamp)}
+              </div>
+            </div>
+
+            <p class="text-xs text-charcoal-700 leading-relaxed font-normal">${escapeHtml(g.caption)}</p>
+          </div>
+
+          <div class="pt-3 border-t border-warm-150 space-y-3">
+            <div class="flex items-center justify-between text-xs">
+              <div class="flex items-center gap-2">
+                <button onclick="sendGlimmerReaction('${g.id}', 'light')" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#faf7f2] hover:bg-warm-150 border border-warm-200 text-charcoal-700 transition active:scale-95 text-xs font-medium">
+                  <span>✨ Pure light</span>
+                  <span class="font-bold text-charcoal-900">${g.lights}</span>
+                </button>
+                <button onclick="sendGlimmerReaction('${g.id}', 'smile')" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#faf7f2] hover:bg-warm-150 border border-warm-200 text-charcoal-700 transition active:scale-95 text-xs font-medium">
+                  <span>💛 Made my day</span>
+                  <span class="font-bold text-charcoal-900">${g.smiles}</span>
+                </button>
+              </div>
+
+              <button onclick="toggleGlimmerReplies('${g.id}')" class="text-charcoal-500 hover:text-charcoal-800 text-xs font-medium flex items-center gap-1">
+                <span>💬</span>
+                <span>${g.comments.length}</span>
+              </button>
+            </div>
+
+            <div id="glimmerReplySec-${g.id}" class="hidden pt-2 border-t border-warm-150 space-y-2.5">
+              <div class="space-y-1.5 max-h-48 overflow-y-auto">
+                ${commentsMarkup.length > 0 ? commentsMarkup : '<div class="text-[11px] text-charcoal-400 italic py-1">Leave a warm thought for this photo.</div>'}
+              </div>
+              <div class="flex gap-2 pt-1">
+                <input type="text" id="glimmerReplyInput-${g.id}" placeholder="Say something kind..." class="flex-1 bg-[#faf7f2] border border-warm-200 rounded-xl px-3 py-1.5 text-xs text-charcoal-800 placeholder:text-charcoal-400 focus:outline-none focus:border-terracotta-500 transition">
+                <button onclick="addGlimmerReply('${g.id}')" class="px-3.5 py-1.5 bg-terracotta-500 hover:bg-terracotta-600 text-white rounded-xl text-xs font-medium transition shadow-sm">Send</button>
+              </div>
+            </div>
+          </div>
+        `;
+
+        glimmersContainer.appendChild(card);
+      });
+    }
+
+    window.sendGlimmerReaction = function(glimmerId, type) {
+      const glimmers = getStoredGlimmers();
+      const item = glimmers.find(g => g.id === glimmerId);
+      if (item) {
+        let reactionMsg = 'warm empathy';
+        if (type === 'light') { item.lights++; reactionMsg = 'pure light ✨'; }
+        if (type === 'smile') { item.smiles++; reactionMsg = 'a heartfelt smile 💛'; }
+        saveGlimmers(glimmers);
+        playChimeSound();
+
+        const myNotes = getMyCreatedNoteIds();
+        if (myNotes.includes(glimmerId)) {
+          addInboxNotification(`A stranger admired your glimmer with ${reactionMsg}.`);
+        }
+      }
+    };
+
+    window.toggleGlimmerReplies = function(glimmerId) {
+      document.getElementById(`glimmerReplySec-${glimmerId}`).classList.toggle('hidden');
+    };
+
+    window.addGlimmerReply = function(glimmerId) {
+      const input = document.getElementById(`glimmerReplyInput-${glimmerId}`);
+      const text = input.value.trim();
+      if (!text) return;
+
+      const safety = checkContentSafety(text);
+      if (safety.isToxic) { aiGuardModal.classList.remove('hidden'); return; }
+
+      const glimmers = getStoredGlimmers();
+      const target = glimmers.find(g => g.id === glimmerId);
+      if (target) {
+        target.comments.push({
+          author: natureNames[Math.floor(Math.random() * natureNames.length)],
+          text: text,
+          timestamp: Date.now()
+        });
+        saveGlimmers(glimmers);
+        input.value = '';
+        document.getElementById(`glimmerReplySec-${glimmerId}`).classList.remove('hidden');
+        playChimeSound();
+
+        const myNotes = getMyCreatedNoteIds();
+        if (myNotes.includes(glimmerId)) {
+          addInboxNotification(`A stranger left a gentle thought under your glimmer.`);
+        }
+      }
+    };
+
+    // Keepsake Postcard Export
+    const keepsakeModal = document.getElementById('keepsakeModal');
+    let currentKeepsakeData = null;
+
+    window.openKeepsakeModal = function(noteId) {
+      const notes = getStoredNotes();
+      const note = notes.find(n => n.id === noteId);
+      if (!note) return;
+
+      let quoteText = note.content;
+      let authorText = `Written by ${note.author}`;
+
+      if (note.comments.length > 0) {
+        quoteText = `"${note.comments[0].text}"`;
+        authorText = `Comfort from ${note.comments[0].author}`;
+      }
+
+      currentKeepsakeData = { quote: quoteText, author: authorText };
+      document.getElementById('keepsakeQuote').textContent = quoteText;
+      document.getElementById('keepsakeAuthor').textContent = `— ${authorText}`;
+
+      keepsakeModal.classList.remove('hidden');
+    };
+
+    document.getElementById('closeKeepsakeBtn').addEventListener('click', () => keepsakeModal.classList.add('hidden'));
+
+    document.getElementById('downloadPostcardBtn').addEventListener('click', () => {
+      if (!currentKeepsakeData) return;
+
+      const canvas = document.createElement('canvas');
+      canvas.width = 800;
+      canvas.height = 500;
+      const ctx = canvas.getContext('2d');
+
+      ctx.fillStyle = '#faf7f2';
+      ctx.fillRect(0, 0, 800, 500);
+
+      ctx.strokeStyle = '#ded0ba';
+      ctx.lineWidth = 4;
+      ctx.strokeRect(30, 30, 740, 440);
+
+      ctx.font = 'bold 16px "Plus Jakarta Sans", sans-serif';
+      ctx.fillStyle = '#cb5d38';
+      ctx.fillText('LETITGO LOG · A WHISPER OF WARMTH', 60, 85);
+
+      ctx.font = '14px "Plus Jakarta Sans", sans-serif';
+      ctx.fillStyle = '#9e938c';
+      ctx.fillText('Faded in 24 hours · Kept in your heart', 60, 115);
+
+      ctx.strokeStyle = '#ebdcd0';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(60, 140);
+      ctx.lineTo(740, 140);
+      ctx.stroke();
+
+      ctx.font = 'italic 24px "Newsreader", Georgia, serif';
+      ctx.fillStyle = '#1e1a18';
+      wrapText(ctx, currentKeepsakeData.quote, 60, 200, 680, 36);
+
+      ctx.font = '500 16px "Plus Jakarta Sans", sans-serif';
+      ctx.fillStyle = '#796f69';
+      ctx.fillText(currentKeepsakeData.author, 60, 420);
+
+      const link = document.createElement('a');
+      link.download = `LetItGo-Keepsake-${Date.now()}.png`;
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+
+      showToast('Keepsake postcard downloaded to your device 🤍');
+    });
+
+    function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
+      const words = text.split(' ');
+      let line = '';
+      for (let n = 0; n < words.length; n++) {
+        const testLine = line + words[n] + ' ';
+        const metrics = ctx.measureText(testLine);
+        if (metrics.width > maxWidth && n > 0) {
+          ctx.fillText(line, x, y);
+          line = words[n] + ' ';
+          y += lineHeight;
+        } else {
+          line = testLine;
+        }
+      }
+      ctx.fillText(line, x, y);
+    }
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return str.replace(/[&<>'"]/g, 
+        t => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[t] || t)
+      );
+    }
+
+    function updateStats() {
+      const notes = getStoredNotes().filter(n => (n.reports || 0) < 3);
+      document.getElementById('statNotesCount').textContent = notes.length;
+      
+      let totalEmpathy = 0;
+      let totalComments = 0;
+      notes.forEach(n => {
+        totalEmpathy += (n.hugs + n.candles + n.warmth);
+        totalComments += n.comments.length;
+      });
+
+      document.getElementById('statEmpathyCount').textContent = totalEmpathy;
+      document.getElementById('statWordsShared').textContent = `${totalComments} kind words shared so far`;
+    }
+
+    // Render Stories
+    const storiesGrid = document.getElementById('storiesGrid');
+    const storyModal = document.getElementById('storyModal');
+    const closeStoryModalBtn = document.getElementById('closeStoryModalBtn');
+
+    function renderStories() {
+      if (!storiesGrid) return;
+      storiesGrid.innerHTML = '';
+      resilienceStories.forEach(s => {
+        const card = document.createElement('div');
+        card.className = 'bg-white rounded-3xl p-6 border border-warm-200 shadow-soft hover:shadow-card hover:border-warm-300 transition-all flex flex-col justify-between text-left group';
+
+        card.innerHTML = `
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-[10px] font-bold uppercase tracking-wider text-terracotta-600 bg-terracotta-50 px-2.5 py-1 rounded-full border border-terracotta-100">
+                ${s.tag}
+              </span>
+              <span class="text-xs text-charcoal-400 group-hover:text-terracotta-500 transition">✦</span>
+            </div>
+            <h3 class="text-lg font-normal serif-title text-charcoal-900 mb-1 group-hover:text-terracotta-600 transition">${s.title}</h3>
+            <p class="text-[11px] text-charcoal-400 font-medium mb-3">${s.figure}</p>
+            <p class="text-xs text-charcoal-500 leading-relaxed">${s.preview}</p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-warm-150 flex items-center justify-between">
+            <span class="text-[11px] text-charcoal-400 italic serif-title">3 min read</span>
+            <button onclick="openStoryModal('${s.id}')" class="text-xs font-semibold text-terracotta-600 hover:text-terracotta-700 flex items-center gap-1">
+              <span>Read reflection</span>
+              <span>→</span>
+            </button>
+          </div>
+        `;
+        storiesGrid.appendChild(card);
+      });
+    }
+
+    window.openStoryModal = function(storyId) {
+      const story = resilienceStories.find(item => item.id === storyId);
+      if (!story) return;
+
+      document.getElementById('modalStoryTag').textContent = story.tag;
+      document.getElementById('modalStoryTitle').textContent = story.title;
+      document.getElementById('modalStoryFigure').textContent = story.figure;
+      document.getElementById('modalStoryQuote').textContent = story.quote;
+      document.getElementById('modalStoryBody').innerHTML = story.body;
+      document.getElementById('modalStoryTakeaway').textContent = story.takeaway;
+
+      storyModal.classList.remove('hidden');
+    };
+
+    closeStoryModalBtn.addEventListener('click', () => storyModal.classList.add('hidden'));
+    storyModal.addEventListener('click', (e) => {
+      if (e.target === storyModal) storyModal.classList.add('hidden');
+    });
+
+    // Midnight Sanctuary Auto & Manual Toggle
+    const midnightToggleBtn = document.getElementById('midnightToggleBtn');
+    let isMidnightActive = false;
+
+    function applyMidnightSanctuary(active) {
+      isMidnightActive = active;
+      if (active) {
+        document.body.classList.add('midnight-mode');
+        document.getElementById('midnightIcon').textContent = '☀️';
+        document.getElementById('midnightLabel').textContent = 'Gentle Morning';
+        document.getElementById('heroHeadline').innerHTML = 'Rest your heart,<br />leave the night to us.';
+        document.getElementById('heroSubtext').textContent = 'The hour is late. Do not carry your heavy thoughts to sleep—set them gently down into this quiet room.';
+      } else {
+        document.body.classList.remove('midnight-mode');
+        document.getElementById('midnightIcon').textContent = '🌙';
+        document.getElementById('midnightLabel').textContent = 'Midnight Sanctuary';
+        document.getElementById('heroHeadline').innerHTML = 'Let it go,<br />then let it fade.';
+        document.getElementById('heroSubtext').textContent = "Set down whatever you are carrying into a quiet room of strangers who understand. Write it once, read other people's, and leave a little warmth behind.";
+      }
+    }
+
+    const currentHour = new Date().getHours();
+    if (currentHour >= 23 || currentHour < 5) {
+      applyMidnightSanctuary(true);
+    }
+
+    midnightToggleBtn.addEventListener('click', () => {
+      applyMidnightSanctuary(!isMidnightActive);
+    });
+
+    // Calm Down Corner Logic[cite: 1, 2]
+    const calmModal = document.getElementById('calmModal');
+    const breathCircle = document.getElementById('breathCircle');
+    const breathText = document.getElementById('breathText');
+    const toggleAudioBtn = document.getElementById('toggleAudioBtn');
+    let breathTimer = null;
+
+    function openCalmModal() {
+      calmModal.classList.remove('hidden');
+      startBreathingCycle();
+    }
+
+    function closeCalmModal() {
+      calmModal.classList.add('hidden');
+      clearInterval(breathTimer);
+      breathCircle.style.transform = 'scale(1)';
+      stopActiveAudio();
+    }
+
+    document.getElementById('floatingCalmBtn').addEventListener('click', openCalmModal);
+    document.getElementById('openCalmFromSidebar').addEventListener('click', openCalmModal);
+    document.getElementById('closeCalmBtn').addEventListener('click', closeCalmModal);
+    document.getElementById('finishCalmBtn').addEventListener('click', closeCalmModal);
+
+    function startBreathingCycle() {
+      let stage = 0;
+      const tick = () => {
+        if (stage === 0) {
+          breathText.textContent = 'Inhale deeply (4s)...';
+          breathCircle.style.transform = 'scale(1.35)';
+          stage = 1;
+        } else if (stage === 1) {
+          breathText.textContent = 'Gently hold (4s)...';
+          stage = 2;
+        } else {
+          breathText.textContent = 'Exhale slowly (4s)...';
+          breathCircle.style.transform = 'scale(1)';
+          stage = 0;
+        }
+      };
+      tick();
+      breathTimer = setInterval(tick, 4000);
+    }
+
+    const soundButtons = document.querySelectorAll('.soundscape-btn');
+    soundButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        soundButtons.forEach(b => {
+          b.className = 'soundscape-btn px-2.5 py-1.5 rounded-xl bg-[#faf7f2] border border-warm-200 text-charcoal-600 font-medium text-left flex items-center gap-1.5 transition';
+        });
+        btn.className = 'soundscape-btn px-2.5 py-1.5 rounded-xl bg-white border border-terracotta-500 text-terracotta-700 font-medium text-left flex items-center gap-1.5 transition';
+        activeSoundscape = btn.getAttribute('data-sound');
+
+        if (isPlayingAudio) {
+          stopActiveAudio();
+          startActiveAudio();
+        }
+      });
+    });
+
+    function startActiveAudio() {
+      try {
+        const ctx = getAudioCtx();
+        const bufferSize = ctx.sampleRate * 2;
+        const noiseBuffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+        const data = noiseBuffer.getChannelData(0);
+
+        let lastVal = 0.0;
+        for (let i = 0; i < bufferSize; i++) {
+          const white = Math.random() * 2 - 1;
+          if (activeSoundscape === 'fire') {
+            data[i] = (Math.random() > 0.985) ? (Math.random() * 2 - 1) * 2.5 : ((lastVal + (0.02 * white)) / 1.02);
+            lastVal = data[i];
+          } else {
+            data[i] = (lastVal + (0.02 * white)) / 1.02;
+            lastVal = data[i];
+          }
+          data[i] *= 1.8;
+        }
+
+        currentNoiseNode = ctx.createBufferSource();
+        currentNoiseNode.buffer = noiseBuffer;
+        currentNoiseNode.loop = true;
+
+        const filter = ctx.createBiquadFilter();
+        currentGainNode = ctx.createGain();
+
+        if (activeSoundscape === 'rain') {
+          filter.type = 'lowpass';
+          filter.frequency.setValueAtTime(550, ctx.currentTime);
+          currentGainNode.gain.setValueAtTime(0.12, ctx.currentTime);
+        } else if (activeSoundscape === 'fire') {
+          filter.type = 'bandpass';
+          filter.frequency.setValueAtTime(450, ctx.currentTime);
+          currentGainNode.gain.setValueAtTime(0.14, ctx.currentTime);
+        } else if (activeSoundscape === 'tide') {
+          filter.type = 'lowpass';
+          filter.frequency.setValueAtTime(320, ctx.currentTime);
+          const lfo = ctx.createOscillator();
+          const lfoGain = ctx.createGain();
+          lfo.frequency.setValueAtTime(0.15, ctx.currentTime);
+          lfoGain.gain.setValueAtTime(0.08, ctx.currentTime);
+          lfo.connect(lfoGain.gain);
+          lfo.start();
+          currentGainNode.gain.setValueAtTime(0.1, ctx.currentTime);
+        } else if (activeSoundscape === 'wind') {
+          filter.type = 'bandpass';
+          filter.frequency.setValueAtTime(700, ctx.currentTime);
+          currentGainNode.gain.setValueAtTime(0.08, ctx.currentTime);
+        }
+
+        currentNoiseNode.connect(filter);
+        filter.connect(currentGainNode);
+        currentGainNode.connect(ctx.destination);
+
+        currentNoiseNode.start(0);
+        isPlayingAudio = true;
+        toggleAudioBtn.textContent = 'Stop sound';
+        toggleAudioBtn.classList.replace('bg-terracotta-100', 'bg-terracotta-500');
+        toggleAudioBtn.classList.replace('text-terracotta-700', 'text-white');
+      } catch (e) {
+        console.warn('Audio not supported or blocked', e);
+      }
+    }
+
+    function stopActiveAudio() {
+      if (audioContext && isPlayingAudio) {
+        if (currentNoiseNode) {
+          try { currentNoiseNode.stop(); } catch(e){}
+        }
+        isPlayingAudio = false;
+        toggleAudioBtn.textContent = 'Play sound';
+        toggleAudioBtn.classList.replace('bg-terracotta-500', 'bg-terracotta-100');
+        toggleAudioBtn.classList.replace('text-white', 'text-terracotta-700');
+      }
+    }
+
+    toggleAudioBtn.addEventListener('click', () => {
+      if (!isPlayingAudio) startActiveAudio();
+      else stopActiveAudio();
+    });
+
+    // ==========================================
+    // INITIAL LOAD (Always loads all data smoothly)
+    // ==========================================
+    renderNotes();
+    renderGlimmers();
+    renderStories();
+    renderInbox();
+    updateStats();
+
+    setInterval(() => {
+      renderNotes();
+      renderGlimmers();
+      renderInbox();
+    }, 60000);
+  </script>
+</body>
+</html>
